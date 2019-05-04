@@ -56,6 +56,6 @@ int maxArea(vector<int> &height) {
 ```
 
 * Python3
-```python3
+```python
 
 ```
