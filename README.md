@@ -1,3 +1,5 @@
+## Table of Contents
+
 <!-- TOC depthFrom:2 -->
 
 - [Array](#Array)
