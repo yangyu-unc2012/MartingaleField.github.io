@@ -1,7 +1,3 @@
----
-layout: default
----
-
 ## 1. Array
 
 ### Two Sum
