@@ -1,10 +1,8 @@
-# My Study Notes
+# Coding
 
-## Coding
+## Array
 
-### Array
-
-#### Two Sum
+### Two Sum
 
 ```python
 def twoSum(nums: List[int], target: int) -> List[int]:
@@ -17,6 +15,6 @@ def twoSum(nums: List[int], target: int) -> List[int]:
             return i, num_to_idx[gap]
 ```
 
-### Linked List
+## Linked List
 
-### Hash Table
+## Hash Table
