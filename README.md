@@ -206,7 +206,7 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 
 ### 4Sum
 
-Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in nums such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
+Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in `nums` such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
 
 **Note:**
 
@@ -221,8 +221,8 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
     sort(nums.begin(), nums.end());
     for (int a = 0; a < n - 3; ++a) {
         // Pruning
-        if (nums[a] + nums[n-1] + nums[n-2] + nums[n-3] < target ||
-            nums[a] + nums[a+1] + nums[a+2] + nums[a+3] > target)
+        if (nums[a] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target ||
+            nums[a] + nums[a + 1] + nums[a + 2] + nums[a + 3] > target)
             continue;
         for (int b = a + 1; b < n - 2; ++b) {
             if (b > a + 1 && nums[b] == nums[b - 1]) {
