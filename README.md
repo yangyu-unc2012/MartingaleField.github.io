@@ -2,7 +2,7 @@
 
 <!-- TOC depthFrom:2 -->
 
-- [Array](array)
+- [Array](Array)
 
 <!-- /TOC -->
 
