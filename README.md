@@ -1,4 +1,4 @@
-## LeetCode
+# LeetCode
 
 <!-- TOC depthFrom:2 -->
 
@@ -7,7 +7,7 @@
 
 <!-- /TOC -->
 
-## Array
+# Array
 
 ### Two Sum
 
@@ -153,4 +153,4 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
     return ans
 ```
 
-## Linked List
+# Linked List
