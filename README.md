@@ -1,8 +1,11 @@
----
-layout: default
----
+<!-- TOC depthFrom:2 -->
 
-## 1. Array
+- [Array](#Array)
+- [Linked List](#Linked-List)
+
+<!-- /TOC -->
+
+## Array
 
 ### Two Sum
 
