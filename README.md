@@ -1,5 +1,11 @@
 # LC
 
+<!-- TOC depthFrom:2 -->
+
+- [Array](array)
+
+<!-- /TOC -->
+
 ## Array
 
 ### Two Sum
