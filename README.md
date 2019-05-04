@@ -4,7 +4,7 @@
 
 ### Array
 
-### Two Sum
+#### Two Sum
 
 ```python
 def twoSum(nums: List[int], target: int) -> List[int]:
