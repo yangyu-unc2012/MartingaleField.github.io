@@ -12,3 +12,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
+
+## Linked List
+
+## Hash Table
