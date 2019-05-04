@@ -5,10 +5,6 @@
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
-\begin{equation}
-a = b + c
-\end{equation}
-
 * C++:
 ```c++
 vector<int> twoSum(vector<int> &nums, int target) {
@@ -40,4 +36,26 @@ def twoSum(nums: List[int], target: int) -> List[int]:
             return i, num_to_idx[gap]
 ```
 
+### Container With Most Water
 
+Given n non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+* C++
+```c++
+int maxArea(vector<int> &height) {
+    int water = 0;
+    int i = 0, j = height.size() - 1;
+    while (i < j) {
+        int h = min(height[i], height[j]);
+        water = max(water, (j - i) * h);
+        while (height[i] <= h && i < j) i++;
+        while (height[j] <= h && i < j) j--;
+    }
+    return water;
+}
+```
+
+* Python3
+```python3
+
+```
