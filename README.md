@@ -3,7 +3,7 @@
 <!-- TOC depthFrom:2 -->
 
 - [Array](#Array)
-- [Linked List](#Linked List)
+- [Linked List](#Linked-List)
 
 <!-- /TOC -->
 
