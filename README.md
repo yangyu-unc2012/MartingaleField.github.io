@@ -42,7 +42,11 @@ Given `n` non-negative integers `a1, a2, ..., an` , where each represents a poin
 
 ![alt text](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg "")
 
-* C++
+*Solution* Use two pointers. Pointer `i` points to the first element and `j` to the last. 
+* If there exists taller bar on the right, move `i` to it and check if we have a better result.
+* If there exists taller bar on the left, move `j` to it and check if we have a better result.
+
+C++
 ```c++
 int maxArea(vector<int> &height) {
     int water = 0;
@@ -57,7 +61,7 @@ int maxArea(vector<int> &height) {
 }
 ```
 
-* Python3
+Python3
 ```python
 
 ```
