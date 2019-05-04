@@ -87,4 +87,70 @@ def maxArea(self, height: List[int]) -> int:
 ### 3Sum
 Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0?` Find all unique triplets in the array which gives the sum of zero.
 
+**Note:**
+
+The solution set must not contain duplicate triplets.
+
+C++
+```c++
+vector<vector<int>> threeSum(vector<int> &nums) {
+    vector<vector<int>> result;
+    sort(nums.begin(), nums.end());
+    int n = nums.size();
+    for (int i = 0; i < n - 2; ++i) {
+        if (i > 0 && nums[i] == nums[i - 1]) continue;
+        int j = i + 1, k = n - 1;
+        while (j < k) {
+            int sum = nums[i] + nums[j] + nums[k];
+            if (sum < 0) {
+                ++j;
+                while (j < k && nums[j] == nums[j - 1]) ++j;
+            } else if (sum > 0) {
+                --k;
+                while (j < k && nums[k] == nums[k + 1]) --k;
+            } else {
+                result.push_back({nums[i], nums[j], nums[k]});
+                ++j;
+                --k;
+                while (j < k && nums[j] == nums[j - 1] && nums[k] == nums[k + 1]) {
+                    ++j;
+                    --k;
+                }
+            }
+        }
+    }
+    return result;
+}
+```
+
+Python3
+```python
+def threeSum(nums: 'List[int]') -> 'List[List[int]]':
+    ans = []
+    nums.sort()
+    n = len(nums)
+    for i in range(n - 2):
+        j, k = i + 1, n - 1
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        while j < k:
+            sum = nums[i] + nums[j] + nums[k]
+            if sum < 0:
+                j += 1
+                while j < k and nums[j] == nums[j - 1]:
+                    j += 1
+            elif sum > 0:
+                k -= 1
+                while j < k and nums[k] == nums[k + 1]:
+                    k -= 1
+            else:
+                ans.append([nums[i], nums[j], nums[k]])
+                j += 1
+                k -= 1
+                while j < k and nums[j] == nums[j - 1] and nums[k] == nums[k + 1]:
+                    j += 1
+                    k -= 1
+    return ans
+```
+
 ## Linked List
