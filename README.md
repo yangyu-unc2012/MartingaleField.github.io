@@ -1,12 +1,5 @@
 # LC
 
-<!-- TOC depthFrom:2 -->
-
-- [Array](#Array)
-- [Linked List](https://github.com/MartingaleField/MartingaleField.github.io#linked-list)
-
-<!-- /TOC -->
-
 ## Array
 
 ### Two Sum
