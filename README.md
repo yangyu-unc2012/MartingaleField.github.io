@@ -3,6 +3,7 @@
 <!-- TOC depthFrom:2 -->
 
 - [Array](#Array)
+- [Linked List](#Linked List)
 
 <!-- /TOC -->
 
@@ -82,3 +83,5 @@ def maxArea(self, height: List[int]) -> int:
             j -= 1
     return ans
 ```
+
+## Linked List
