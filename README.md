@@ -3,7 +3,7 @@
 <!-- TOC depthFrom:2 -->
 
 - [Array](#Array)
-- [Linked List](#Linked-List)
+- [Linked List](https://github.com/MartingaleField/MartingaleField.github.io#linked-list)
 
 <!-- /TOC -->
 
