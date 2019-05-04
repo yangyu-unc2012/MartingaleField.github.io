@@ -203,4 +203,48 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
                 ans = sum
     return ans
 ```
+
+### 4Sum
+
+Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in nums such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
+
+**Note:**
+
+The solution set must not contain duplicate quadruplets.
+
+C++
+```c++
+vector<vector<int>> fourSum(vector<int> &nums, int target) {
+    vector<vector<int>> result;
+    int n = nums.size();
+    if (n < 4) return result;
+    sort(nums.begin(), nums.end());
+    for (int a = 0; a < n - 3; ++a) {
+        // Pruning
+        if (nums[a] + nums[n-1] + nums[n-2] + nums[n-3] < target ||
+            nums[a] + nums[a+1] + nums[a+2] + nums[a+3] > target)
+            continue;
+        for (int b = a + 1; b < n - 2; ++b) {
+            if (b > a + 1 && nums[b] == nums[b - 1]) {
+                continue;
+            }
+            int c = b + 1, d = n - 1;
+            while (c < d) {
+                int sum = nums[a] + nums[b] + nums[c] + nums[d];
+                if (sum < target) {
+                    c++;
+                } else if (sum > target) {
+                    d--;
+                } else {
+                    result.push_back({nums[a], nums[b], nums[c++], nums[d--]});
+                }
+            }
+        }
+    }
+    sort(result.begin(), result.end());
+    result.erase(unique(result.begin(), result.end()), result.end());
+    return result;
+}
+```
+
 # Linked List
