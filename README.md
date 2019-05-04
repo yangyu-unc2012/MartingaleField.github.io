@@ -85,7 +85,7 @@ def maxArea(self, height: List[int]) -> int:
 ```
 
 ### 3Sum
-Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0?` Find all unique triplets in the array which gives the sum of zero.
+Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
 
 **Note:**
 
@@ -153,4 +153,54 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
     return ans
 ```
 
+### 3Sum Closest
+
+Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
+
+C++
+```c++
+int threeSumClosest(vector<int> &nums, int target) {
+    int res = nums[0] + nums[1] + nums[2], n = nums.size();
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < n; ++i) {
+        int j = i + 1, k = n - 1;
+        while (j < k) {
+            int diff = target - nums[i] - nums[j] - nums[k];
+            if (diff == 0)
+                return target;
+            if (abs(diff) < abs(res - target)) {
+                res = nums[i] + nums[j] + nums[k];
+            } else if (diff < 0) {
+                k--;
+            } else {
+                j++;
+            }
+        }
+    }
+    return res;
+}
+```
+
+Python3
+```python
+def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
+    nums.sort()
+    ans = nums[0] + nums[1] + nums[2]
+    n = len(nums)
+    for i in range(n - 2):
+        j, k = i + 1, n - 1
+        while j < k:
+            sum = nums[i] + nums[j] + nums[k]
+            diff = target - sum
+            if diff > 0:
+                j += 1
+            elif diff < 0:
+                k -= 1
+            else:
+                ans = sum
+                break
+            if abs(diff) < abs(target - ans):
+                ans = sum
+    return ans
+```
 # Linked List
