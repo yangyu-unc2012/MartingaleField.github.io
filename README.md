@@ -829,6 +829,10 @@ vector<int> inorderTraversal(TreeNode *root) {
 
 #### Solution: Morris
 
+A binary tree is threaded by making all right child pointers that would normally be null point to the inorder successor of the node (if it exists), and all left child pointers that would normally be null point to the inorder predecessor of the node.
+
+![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
+
 ```
 1. Initialize current as root 
 2. While current is not NULL
