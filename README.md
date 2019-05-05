@@ -602,5 +602,5 @@ Output: [24,12,8,6]
     1 * A[1]*...*A[n-1],  A[0] * A[2]*...*A[n-1],   A[0]*A[1] * A[3]*...*A[n-1],    ...,    
     A[0]*A[1]*...*A[n-3] * A[n-1],  A[0]*A[1]*...*A[n-2] * 1
     ```
-
+    which is the desired result.
 # Linked List
