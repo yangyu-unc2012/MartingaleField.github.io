@@ -829,4 +829,35 @@ vector<int> inorderTraversal(TreeNode *root) {
 
 #### Solution: Morris
 
+For example, for the tree below, the inorder traversal sequence is
+`[1, 2, 4, 3, 6, 7]`.
+
+Time complexity O(n), space complexity O(1).
+
 ![image2](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/4.PNG "Morris Inorder Traversal")
+
+##### C++
+```c++
+vector<int> inorderTraversal(TreeNode *root) {
+    vector<int> result;
+    TreeNode *cur = root, *node = nullptr;
+    while (cur) {
+        if (!cur->left) {
+            result.emplace_back(cur->val);
+            cur = cur->right;
+        } else {
+            for (node = cur->left; node->right && node->right != cur; node = node->right);
+            if (!node->right) {
+                node->right = cur;
+                cur = cur->left;
+            } else {
+                // This line is different from preorder traversal
+                result.emplace_back(cur->val); 
+                node->right = nullptr;
+                cur = cur->right;
+            }
+        }
+    }
+    return result;
+}
+```
