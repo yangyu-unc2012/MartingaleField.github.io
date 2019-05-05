@@ -829,4 +829,4 @@ vector<int> inorderTraversal(TreeNode *root) {
 
 #### Solution: Morris
 
-![image2](https://github.com/MartingaleField/MartingaleField.github.io/blob/master/4.PNG "Morris Inorder Traversal")
+![image2](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/4.PNG "Morris Inorder Traversal")
