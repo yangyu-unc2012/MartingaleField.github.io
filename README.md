@@ -299,4 +299,20 @@ int removeDuplicates(vector<int> &nums) {
 }
 ```
 
+Python3
+```python
+def removeDuplicates(nums: 'List[int]') -> 'int':
+    if not nums:
+        return 0
+    j = 0
+    for num in nums:
+        if num == nums[j]:
+            continue
+        j += 1
+        nums[j] = num
+    return j + 1
+```
+
+###
+
 # Linked List
