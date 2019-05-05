@@ -21,6 +21,7 @@ https://martingalefield.github.io/
     - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
     - [Product of Array Except Self](#product-of-array-except-self)
     - [Missing Number](#missing-number)
+    - [Contains Duplicate III](#contains-duplicate-iii)
 - [Linked List](#linked-list)
 
 
@@ -670,6 +671,88 @@ def missingNumber(nums: 'List[int]') -> 'int':
     for i in range(0, len(nums)):
         ans ^= (nums[i] ^ i)
     return ans
+```
+---
+
+### Contains Duplicate III
+
+Given an array of integers, find out whether there are two distinct indices `i` and `j` in the array such that the **absolute** difference between `nums[i]` and `nums[j]` is at most `t` and the **absolute** difference between `i` and `j` is at most `k`.
+
+##### Example 1:
+```
+Input: nums = [1,2,3,1], k = 3, t = 0
+Output: true
+```
+#####Example 2:
+```
+Input: nums = [1,0,1,1], k = 1, t = 2
+Output: true
+```
+#####Example 3:
+```
+Input: nums = [1,5,9,1,5,9], k = 2, t = 3
+Output: false
+```
+
+#### Solution: Sort
+Use a `vector<pair<long, int>>` to store `(elem, index)` pairs. Sort this vector. This will produce a similar structure to `multimap<long, int>` but we can do sliding-window technique on it using continuous indexing.
+
+##### C++
+```c++
+bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
+    vector<pair<long, int>> map;
+    for (int i = 0; i < nums.size(); ++i)
+        map.push_back({nums[i], i});
+    sort(map.begin(), map.end());
+    int j = 1;
+    for (int i = 0; i < map.size(); ++i) {
+        while (j < map.size() && abs(map[j].first - map[i].first) <= t) {
+            if (abs(map[j].second - map[i].second) <= k)
+                return true;
+            j++;
+        }
+        if (j == i + 1) j++;
+    }
+    return false;
+}
+```
+
+##### Python3
+```python
+def containsNearbyAlmostDuplicate(nums: List[int], k: int, t: int) -> bool:
+    map = [(e, i) for i, e in enumerate(nums)]
+    map.sort()
+    j = 1
+    for i in range(len(map)):
+        while j < len(map) and abs(map[j][0] - map[i][0]) <= t:
+            if abs(map[i][1] - map[j][1]) <= k:
+                print(i, j)
+                return True
+            j += 1
+        if j == i + 1:
+            j += 1
+    return False
+```
+
+#### Solution: Ordered Set
+
+The sliding-window idea can also be implemented using `set<long>`, in which elements are ordered automatically.
+
+##### C++
+```c++
+bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
+    set<long> window; // set is ordered automatically
+    for (int i = 0; i < nums.size(); i++) {
+        // keep the set contains nums with |i - j| at most k
+        if (i > k) window.erase(nums[i - k - 1]);
+        // |x - nums[i]| <= t  ==> -t <= x - nums[i] <= t;
+        auto pos = window.lower_bound(static_cast<long>(nums[i]) - t); // x - nums[i] >= -t ==> x >= nums[i]-t
+        // x - nums[i] <= t ==> |x - nums[i]| <= t
+        if (pos != window.end() && *pos - nums[i] <= t) return true;
+        window.insert(nums[i]);
+    }
+    return false;
+}
 ```
 
 # Linked List
