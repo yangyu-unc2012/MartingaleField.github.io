@@ -13,12 +13,15 @@ https://martingalefield.github.io/
     - [4Sum II](#4sum-ii)
     - [Remove Duplicates from Sorted Array](#Remove-Duplicates-from-Sorted-Array)
     - [Remove Duplicates from Sorted Array II](#Remove-Duplicates-from-Sorted-Array-ii)
+    - [Find Missing Positive](#Find-missing-positive)
 - [Linked List](#Linked-List)
+
 
 <!-- /TOC -->
 
 # Array
----
+
+
 ### Two Sum
 
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
@@ -340,7 +343,7 @@ Input: [3,4,-1,1]
 Output: 2
 ```
 
-Python3
+--Python3--
 ```python
 def firstMissingPositive(nums: 'List[int]') -> 'int':
     for i in range(len(nums)):
