@@ -18,6 +18,7 @@ https://martingalefield.github.io/
     - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
     - [Kth Largest Element in an Array](#Kth-Largest-Element-in-an-Array)
+    - [Minimum Size Subarray Sum](#Minimum-Size-Subarray-Sum)
 - [Linked List](#Linked-List)
 
 
@@ -555,4 +556,28 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
     return -ans
 ```
 
+### Minimum Size Subarray Sum
+Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
+
+### Example
+```
+Input: s = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: the subarray [4,3] has the minimal length under the problem constraint.
+```
+
+#### C++
+```c++
+int minSubArrayLen(int s, vector<int> &nums) {
+    int min_len = nums.size() + 1, sum = 0;
+    for (int i = 0, j = 0; j < nums.size(); j++) {
+        sum += nums[j];
+        while (sum >= s) {
+            min_len = min(min_len, j - i + 1);
+            sum -= nums[i++];
+        }
+    }
+    return min_len <= nums.size() ? min_len : 0;
+}
+```
 # Linked List
