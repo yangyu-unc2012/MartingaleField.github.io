@@ -801,3 +801,26 @@ private:
     }
 };
 ```
+
+#### Solution: Iterative
+
+##### C++
+```c++
+vector<int> inorderTraversal(TreeNode *root) {
+    vector<int> result;
+    stack<TreeNode *> s; // nodes to be visited
+    auto node = root;
+    while (!s.empty() || node) {
+        if (node) {
+            s.push(node);
+            node = node->left;
+        } else {
+            node = s.top();
+            s.pop();
+            result.emplace_back(node->val);
+            node = node->right;
+        }
+    }
+    return result;
+}
+```
