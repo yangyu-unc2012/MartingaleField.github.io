@@ -403,7 +403,8 @@ def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interv
     right_part = [_ for _ in intervals if _.start > e]
     if left_part + right_part != intervals:
         s = min(s, intervals[len(left_part)].start)
-        e = max(e, intervals[~len(right_part)].end)  # a[~i] = a[len(a)-i-1], the i-th element from right to left
+        # a[~i] = a[len(a)-i-1], the i-th element from right to left
+        e = max(e, intervals[~len(right_part)].end)  
     return left_part + [Interval(s, e)] + right_part
 ```
 ---
@@ -478,8 +479,8 @@ vector<int> majorityElement(vector<int> &nums) {
             }
         }
         if (flag) continue;
-        // If num is not one of the candidates and we are missing candidates, 
-        // nominate it to be a new candidate
+        // If num is not one of the candidates and we are missing 
+        // candidates, nominate it to be a new candidate
         for (int i = 0; i < 2; ++i) {
             if (candidates[i].count_ == 0) {
                 candidates[i].count_ = 1;
@@ -489,8 +490,8 @@ vector<int> majorityElement(vector<int> &nums) {
             }
         }
         if (flag) continue;
-        // If num is not one of the candidates nor we are missing any candidates,
-        // pair out current candidates by num
+        // If num is not one of the candidates nor we are missing 
+        // any candidates pair out current candidates by num
         for (int i = 0; i < 2; ++i) {
             --candidates[i].count_;
         }
