@@ -839,13 +839,12 @@ We are not caring about the predecessor link (C -> B in diagram) here to print i
 ```
 1. Initialize current as root 
 2. While current is not NULL
-   If current has a left child
-      a) Make current as right child of the rightmost 
-         node in current's left subtree
-      b) Go to this left child, i.e., current = current->left
+   If current does not have a left child
+      ia) Print current’s data
+      ib) Go to the right, i.e., current = current->right
    Else
-      a) Print current’s data
-      b) Go to the right, i.e., current = current->right
+      ea) Make current as right child of the rightmost node in current's left subtree
+      eb) Go to this left child, i.e., current = current->left
 ```
 
 Time complexity O(n), space complexity O(1).
@@ -854,20 +853,22 @@ Time complexity O(n), space complexity O(1).
 ```c++
 vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
-    TreeNode *cur = root, *node = nullptr;
+    TreeNode *cur = root, *p = nullptr;
     while (cur) {
         if (!cur->left) {
             result.emplace_back(cur->val);
             cur = cur->right;
         } else {
-            for (node = cur->left; node->right && node->right != cur; node = node->right);
-            if (!node->right) {
-                node->right = cur;
+            // Let p point to the rightmost node of cur->left
+            for (p = cur->left; p->right && p->right != cur; p = p->right);
+
+            if (!p->right) { // if p has no right child
+                p->right = cur;
                 cur = cur->left;
-            } else {
+            } else { // if p->right is already threaded to cur
                 // This line is different from preorder traversal
-                result.emplace_back(cur->val); 
-                node->right = nullptr;
+                result.emplace_back(cur->val);
+                p->right = nullptr;
                 cur = cur->right;
             }
         }
