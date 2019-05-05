@@ -3,6 +3,7 @@
 <!-- TOC depthFrom:2 -->
 
 - [Array](#Array)
+    - [Two Sum](#Two-Sum)
 - [Linked List](#Linked-List)
 
 <!-- /TOC -->
