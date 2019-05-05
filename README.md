@@ -360,5 +360,50 @@ def firstMissingPositive(nums: 'List[int]') -> 'int':
 ```
 
 ---
+### Insert Interval
+Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+
+You may assume that the intervals were initially sorted according to their start times.
+
+**Example**
+```
+Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
+Output: [[1,5],[6,9]]
+```
+
+**C++**
+```c++
+vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
+    vector<Interval> result;
+    for (auto it = intervals.begin(); it != intervals.end(); it++) {
+        if (it->end < newInterval.start) {
+            result.emplace_back(*it);
+        } else if (it->start > newInterval.end) {
+            result.emplace_back(newInterval);
+            copy(it, intervals.end(), back_inserter(result));
+            return result;
+        } else {
+            newInterval.start = min(newInterval.start, it->start);
+            newInterval.end = max(newInterval.end, it->end);
+        }
+    }
+    result.push_back(newInterval);
+    return result;
+}
+```
+
+**Python3**
+```python
+def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interval]':
+    s, e = newInterval.start, newInterval.end
+    left_part = [_ for _ in intervals if _.end < s]
+    right_part = [_ for _ in intervals if _.start > e]
+    if left_part + right_part != intervals:
+        s = min(s, intervals[len(left_part)].start)
+        e = max(e, intervals[~len(right_part)].end)  # a[~i] = a[len(a)-i-1], the i-th element from right to left
+    return left_part + [Interval(s, e)] + right_part
+```
+
+---
 
 # Linked List
