@@ -555,7 +555,7 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
         ans = heapq.heappop(nums)
     return -ans
 ```
-
+---
 ### Minimum Size Subarray Sum
 Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
 
@@ -595,7 +595,7 @@ Output: [24,12,8,6]
 #### Solution
 - Iterate forwards over `nums` and generate `output`
 ```
-1,  A[0]
+1,  A[0],   A[0]*A[1],  ...,    A[0]*A[1]*...*A[n-3],   A[0]*A[1]*...*A[n-2]
 ```
 
 # Linked List
