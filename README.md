@@ -368,13 +368,13 @@ Given a set of non-overlapping intervals, insert a new interval into the interva
 
 You may assume that the intervals were initially sorted according to their start times.
 
-**Example**
+#### Example
 ```
 Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
 Output: [[1,5],[6,9]]
 ```
 
-**C++**
+#### C++
 ```c++
 vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
     vector<Interval> result;
@@ -395,7 +395,7 @@ vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
 }
 ```
 
-**Python3**
+#### Python3
 ```python
 def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interval]':
     s, e = newInterval.start, newInterval.end
@@ -413,19 +413,19 @@ Given an array of size `n`, find the majority element. The majority element is t
 
 You may assume that the array is non-empty and the majority element always exist in the array.
 
-__Example 1__
+#### Example 1
 ```
 Input: [3,2,3]
 Output: 3
 ```
 
-__Example 2__
+#### Example 2
 ```
 Input: [2,2,1,1,1,2,2]
 Output: 2
 ```
 
-**C++**
+#### C++
 ```c++
 int majorityElement(vector<int> &nums) {
     int candidate = nums[0], count = 0;
@@ -439,7 +439,7 @@ int majorityElement(vector<int> &nums) {
 }
 ```
 
-**Python3**
+#### Python3
 ```python
 def majorityElement(nums: 'List[int]') -> 'int':
     count = 0
