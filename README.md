@@ -1,4 +1,5 @@
-https://martingalefield.github.io/
+Webpage: https://martingalefield.github.io/
+Github: https://github.com/MartingaleField/MartingaleField.github.io
 
 # LeetCode
 
