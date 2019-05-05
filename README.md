@@ -23,6 +23,8 @@ https://martingalefield.github.io/
     - [Missing Number](#missing-number)
     - [Contains Duplicate III](#contains-duplicate-iii)
 - [Linked List](#linked-list)
+- [Binary Tree](#binary-tree)
+    - [Binary Tree Inorder Traversal](#94.-binary-tree-inorder-traversal)
 
 
 <!-- /TOC -->
@@ -756,3 +758,28 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
 ```
 
 # Linked List
+
+
+# Binary Tree
+
+### Binary Tree Inorder Traversal
+
+Given a binary tree, return the inorder traversal of its nodes' values.
+
+#### Solution: Recursive
+
+##### C++
+```c++
+vector<int> inorderTraversal(TreeNode *root) {
+    vector<int> result;
+    if (!root) {
+        return result;
+    }
+    auto left_traversal = inorderTraversal(root->left);
+    result.insert(result.end(), left_traversal.begin(), left_traversal.end());
+    result.emplace_back(root->val);
+    auto right_traversal = inorderTraversal(root->right);
+    result.insert(result.end(), right_traversal.begin(), right_traversal.end());
+    return result;
+}
+```
