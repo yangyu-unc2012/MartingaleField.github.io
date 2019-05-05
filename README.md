@@ -30,7 +30,7 @@ https://martingalefield.github.io/
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
-**C++**
+#### C++
 ```c++
 vector<int> twoSum(vector<int> &nums, int target) {
     vector<int> ans;
@@ -50,7 +50,7 @@ vector<int> twoSum(vector<int> &nums, int target) {
 }
 ```
 
-**Python3**
+#### Python3
 ```python
 def twoSum(nums: List[int], target: int) -> List[int]:
     num_to_idx = {}
@@ -66,12 +66,12 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 
 Given `n` non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
-***Solution***: 
+#### Solution 
 Use two pointers. Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
 * If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
 * If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
 
-__C++__
+#### C++
 ```c++
 int maxArea(vector<int> &height) {
     int water = 0;
@@ -86,7 +86,7 @@ int maxArea(vector<int> &height) {
 }
 ```
 
-__Python3__
+#### Python3
 ```python
 def maxArea(self, height: List[int]) -> int:
     i, j = 0, len(height) - 1
@@ -106,7 +106,7 @@ Given an array nums of n integers, are there elements `a, b, c` in nums such tha
 
 The solution set must not contain duplicate triplets.
 
-__C++__
+#### C++
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
     vector<vector<int>> result;
@@ -134,7 +134,7 @@ vector<vector<int>> threeSum(vector<int> &nums) {
 }
 ```
 
-__Python3__
+#### Python3
 ```python
 def threeSum(nums: 'List[int]') -> 'List[List[int]]':
     ans = []
@@ -168,7 +168,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
-__C++__
+#### C++
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
     int res = nums[0] + nums[1] + nums[2], n = nums.size();
@@ -192,7 +192,7 @@ int threeSumClosest(vector<int> &nums, int target) {
 }
 ```
 
-__Python3__
+#### Python3
 ```python
 def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
     nums.sort()
@@ -221,7 +221,7 @@ Given an array `nums` of `n` integers and an integer `target`, are there element
 
 The solution set must not contain duplicate quadruplets.
 
-__C++__
+#### C++
 ```c++
 vector<vector<int>> fourSum(vector<int> &nums, int target) {
     vector<vector<int>> result;
@@ -266,7 +266,7 @@ Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j,
 
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
 
-__C++__
+#### C++
 ```c++
 int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
     unordered_map<int, int> sum_freq;
@@ -289,7 +289,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
 
-__C++__
+#### C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 2)
@@ -311,13 +311,13 @@ Given a sorted array `nums`, remove the duplicates **in-place** such that duplic
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 
-***Solution***:
+#### Solution
 At first glance, we can follow the same idea as previous problem. Compare `nums[i]` with the current last two elements of the new array. If either of the comparison return false, we can update the new array. 
 
 In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
 - If `nums[i] == nums[j - 1]`, since we allow at most two duplicates, we can copy `nums[i]` to the end of the new array.
 
-__C++__
+#### C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 3)
@@ -337,18 +337,18 @@ Given an unsorted integer array, find the smallest missing positive integer.
 
 Your algorithm should run in O(n) time and uses constant extra space.
 
-**Example**
+#### Example
 ```
 Input: [3,4,-1,1]
 Output: 2
 ```
 
-***Solution***:
+#### Solution
 - Scan through `nums` and swap each positive number `A[i]` with `A[A[i]-1]`. If `A[A[i]-1]` is again positive, swap it with `A[A[A[i]-1]-1]`... Do this iteratively until we meet a negative number or we have done put all the positive numbers at their correct locations. E.g. `[3, 4, -1, 1]` will become `[1, -1, 3, 4]`.
 - Iterate integers `1` to `n + 1` and check one by one if `i` is located at `i - 1` already. If not, then `i` is the first missing positive integer. 
 
 
-__Python3__
+#### Python3
 ```python
 def firstMissingPositive(nums: 'List[int]') -> 'int':
     for i in range(len(nums)):
