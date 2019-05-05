@@ -770,16 +770,22 @@ Given a binary tree, return the inorder traversal of its nodes' values.
 
 ##### C++
 ```c++
-vector<int> inorderTraversal(TreeNode *root) {
-    vector<int> result;
-    if (!root) {
-        return result;
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        inorder(root);
+        return nodes;
     }
-    auto left_traversal = inorderTraversal(root->left);
-    result.insert(result.end(), left_traversal.begin(), left_traversal.end());
-    result.emplace_back(root->val);
-    auto right_traversal = inorderTraversal(root->right);
-    result.insert(result.end(), right_traversal.begin(), right_traversal.end());
-    return result;
-}
+
+private:
+    vector<int> nodes;
+
+    void inorder(TreeNode *root) {
+        if (!root) return;
+        
+        inorder(root->left);
+        nodes.push_back(root->val);
+        inorder(root->right);
+    }
+};
 ```
