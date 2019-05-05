@@ -25,6 +25,7 @@ https://martingalefield.github.io/
 - [Linked List](#linked-list)
 - [Binary Tree](#binary-tree)
     - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
+    - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
 
 
 <!-- /TOC -->
@@ -768,7 +769,7 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
 
 Given a binary tree, return the inorder traversal of its nodes' values.
 
-##### Example:
+##### Example
 ```
 Input: [1,null,2,3]
    1
@@ -788,17 +789,17 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode *root) {
         inorder(root);
-        return nodes;
+        return result;
     }
 
 private:
-    vector<int> nodes;
+    vector<int> result;
 
     void inorder(TreeNode *root) {
         if (!root) return;
         
         inorder(root->left);
-        nodes.push_back(root->val);
+        result.push_back(root->val);
         inorder(root->right);
     }
 };
@@ -855,23 +856,81 @@ vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
     TreeNode *cur = root, *p = nullptr;
     while (cur) {
-        if (!cur->left) {
+        if (!cur->left) { // cur has no left child
             result.emplace_back(cur->val);
             cur = cur->right;
-        } else {
+        } else { // cur has left child
             // Let p point to the rightmost node of cur->left
             for (p = cur->left; p->right && p->right != cur; p = p->right);
 
             if (!p->right) { // if p has no right child
-                p->right = cur;
+                p->right = cur; // thread p->right to cur
                 cur = cur->left;
-            } else { // if p->right is already threaded to cur
-                // This line is different from preorder traversal
-                result.emplace_back(cur->val);
+            } else { // if p->right is already threaded to cur                
+                result.emplace_back(cur->val); // This line is different from preorder traversal
                 p->right = nullptr;
                 cur = cur->right;
             }
         }
+    }
+    return result;
+}
+```
+---
+### Binary Tree Preorder Traversal
+
+Given a binary tree, return the preorder traversal of its nodes' values.
+
+##### Example
+```
+Input: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+
+Output: [1,2,3]
+```
+
+#### Solution: Recursive
+
+##### C++
+```c++
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+        preorder(root);
+        return result;
+    }
+
+private:
+    vector<int> result;
+
+    void preorder(TreeNode *root) {
+        if (!root) return;
+
+        result.push_back(root->val);
+        preorder(root->left);
+        preorder(root->right);
+    }
+};
+```
+
+#### Solution: Iterative
+
+##### C++
+```c++
+vector<int> preorderTraversal(TreeNode *root) {
+    vector<int> result;
+    stack<TreeNode *> s;
+    if (root) s.emplace(root);
+    while (!s.empty()) {
+        auto node = s.top();
+        s.pop();
+        result.emplace_back(node->val);
+        if (node->right) s.emplace(node->right);
+        if (node->left) s.emplace(node->left);
     }
     return result;
 }
