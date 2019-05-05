@@ -217,11 +217,9 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 
 Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in `nums` such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
 
-**Note:**
-
 The solution set must not contain duplicate quadruplets.
 
-C++
+__C++__
 ```c++
 vector<vector<int>> fourSum(vector<int> &nums, int target) {
     vector<vector<int>> result;
@@ -266,7 +264,7 @@ Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j,
 
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
 
-C++
+__C++__
 ```c++
 int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
     unordered_map<int, int> sum_freq;
@@ -289,7 +287,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
 
-C++
+__C++__
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 2)
@@ -317,7 +315,7 @@ At first glance, we can follow the same idea as previous problem. Compare `nums[
 In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
 - If `nums[i] == nums[j - 1]`, since we allow at most two duplicates, we can copy `nums[i]` to the end of the new array.
 
-C++
+__C++__
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 3)
@@ -343,7 +341,7 @@ Input: [3,4,-1,1]
 Output: 2
 ```
 
---Python3--
+__Python3__
 ```python
 def firstMissingPositive(nums: 'List[int]') -> 'int':
     for i in range(len(nums)):
