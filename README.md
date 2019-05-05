@@ -34,7 +34,7 @@ https://martingalefield.github.io/
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
-#<3> Solution 
+#### Solution 
 
 ##### C++
 ```c++
@@ -112,6 +112,7 @@ Given an array nums of n integers, are there elements `a, b, c` in nums such tha
 
 The solution set must not contain duplicate triplets.
 
+#### Solution 
 ##### C++
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
@@ -174,6 +175,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
+#### Solution 
 ##### C++
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
@@ -227,6 +229,7 @@ Given an array `nums` of `n` integers and an integer `target`, are there element
 
 The solution set must not contain duplicate quadruplets.
 
+#### Solution 
 ##### C++
 ```c++
 vector<vector<int>> fourSum(vector<int> &nums, int target) {
@@ -272,6 +275,7 @@ Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j,
 
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
 
+#### Solution 
 ##### C++
 ```c++
 int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
@@ -294,7 +298,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
-
+#### Solution 
 ##### C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
@@ -343,7 +347,7 @@ Given an unsorted integer array, find the smallest missing positive integer.
 
 Your algorithm should run in O(n) time and uses constant extra space.
 
-#### Example
+##### Example
 ```
 Input: [3,4,-1,1]
 Output: 2
@@ -374,12 +378,13 @@ Given a set of non-overlapping intervals, insert a new interval into the interva
 
 You may assume that the intervals were initially sorted according to their start times.
 
-#### Example
+##### Example
 ```
 Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
 Output: [[1,5],[6,9]]
 ```
 
+#### Solution 
 ##### C++
 ```c++
 vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
@@ -419,18 +424,19 @@ Given an array of size `n`, find the majority element. The majority element is t
 
 You may assume that the array is non-empty and the majority element always exist in the array.
 
-#### Example 1
+##### Example 1
 ```
 Input: [3,2,3]
 Output: 3
 ```
 
-#### Example 2
+##### Example 2
 ```
 Input: [2,2,1,1,1,2,2]
 Output: 2
 ```
 
+#### Solution 
 ##### C++
 ```c++
 int majorityElement(vector<int> &nums) {
@@ -462,6 +468,7 @@ Given an integer array of size `n`, find all elements that appear more than `⌊
 
 Note: The algorithm should run in linear time and in O(1) space.
 
+#### Solution 
 ##### C++
 ```c++
 struct Candidate {
@@ -526,12 +533,12 @@ vector<int> majorityElement(vector<int> &nums) {
 ### Kth Largest Element in an Array
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
-#### Example 1:
+##### Example 1:
 ```
 Input: [3,2,1,5,6,4] and k = 2
 Output: 5
 ```
-#### Example 2:
+##### Example 2:
 ```
 Input: [3,2,3,1,2,4,5,5,6] and k = 4
 Output: 4
@@ -563,14 +570,15 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 ### Minimum Size Subarray Sum
 Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
 
-#### Example
+##### Example
 ```
 Input: s = 7, nums = [2,3,1,2,4,3]
 Output: 2
 Explanation: the subarray [4,3] has the minimal length under the problem constraint.
 ```
 
-#### C++
+#### Solution 
+##### C++
 ```c++
 int minSubArrayLen(int s, vector<int> &nums) {
     int min_len = nums.size() + 1, sum = 0;
@@ -590,7 +598,7 @@ Given an array `nums` of `n` integers where `n > 1`,  return an array `output` s
 
 Note: Please solve it without division and in O(n).
 
-#### Example:
+##### Example:
 ```
 Input:  [1,2,3,4]
 Output: [24,12,8,6]
@@ -632,12 +640,12 @@ Given an array containing n distinct numbers taken from `0, 1, 2, ..., n`, find 
 
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
 
-#### Example 1:
+##### Example 1:
 ```
 Input: [3,0,1]
 Output: 2
 ```
-#### Example 2:
+##### Example 2:
 ```
 Input: [9,6,4,2,3,5,7,0,1]
 Output: 8
