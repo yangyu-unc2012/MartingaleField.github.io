@@ -781,7 +781,7 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
 
 # Binary Tree
 
-### Binary Tree Inorder Traversal
+### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
 
 Given a binary tree, return the inorder traversal of its nodes' values.
 
@@ -850,6 +850,8 @@ A binary tree is threaded by making all right child pointers that would normally
 
 ![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
 
+Inorder: ABCDEFGHI
+
 The threads we need for inorder traveral are `A->B`, `C->D`, `E->F` and `H->I`. At each subtree, we first thread `p` to `cur` (root of subtree) and next time we print out `p` we can use this thread to visit and print out `cur`. 
 
 ##### Pseudo Code
@@ -894,7 +896,7 @@ vector<int> inorderTraversal(TreeNode *root) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Binary Tree Preorder Traversal
+### [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
 
 Given a binary tree, return the preorder traversal of its nodes' values.
 
@@ -956,6 +958,8 @@ vector<int> preorderTraversal(TreeNode *root) {
 #### Solution: Morris
 
 ![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
+
+Preorder: FBADCEGIH
 
 The threads we need for preorder traveral are `A->B`, `C->D`, `E->F` and `H->I`. The difference with inorder is that we print out `cur` before threading `p` to `cur`. The reason is that in preorder traversal, we need to visit the root first before traversing the left subtree.
 
