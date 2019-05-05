@@ -850,11 +850,6 @@ We are not caring about the predecessor link (C -> B in diagram) here to print i
 
 Time complexity O(n), space complexity O(1).
 
-<!-- For example, for the tree below, the inorder traversal sequence is
-`[1, 2, 4, 3, 6, 7]`. -->
-
-<!-- ![image2](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/4.PNG "Morris Inorder Traversal") -->
-
 ##### C++
 ```c++
 vector<int> inorderTraversal(TreeNode *root) {
