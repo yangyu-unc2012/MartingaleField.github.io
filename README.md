@@ -27,7 +27,7 @@ https://martingalefield.github.io/
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
-C++:
+**C++**
 ```c++
 vector<int> twoSum(vector<int> &nums, int target) {
     vector<int> ans;
@@ -46,7 +46,8 @@ vector<int> twoSum(vector<int> &nums, int target) {
     return ans;
 }
 ```
-Python3:
+
+**Python3**
 ```python
 def twoSum(nums: List[int], target: int) -> List[int]:
     num_to_idx = {}
@@ -62,12 +63,12 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 
 Given `n` non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
-*Solution*: 
+***Solution***: 
 Use two pointers. Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
 * If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
 * If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
 
-C++
+__C++__
 ```c++
 int maxArea(vector<int> &height) {
     int water = 0;
@@ -82,7 +83,7 @@ int maxArea(vector<int> &height) {
 }
 ```
 
-Python3
+__Python3__
 ```python
 def maxArea(self, height: List[int]) -> int:
     i, j = 0, len(height) - 1
@@ -100,11 +101,9 @@ def maxArea(self, height: List[int]) -> int:
 ### 3Sum
 Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
 
-**Note:**
-
 The solution set must not contain duplicate triplets.
 
-C++
+__C++__
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
     vector<vector<int>> result;
@@ -132,7 +131,7 @@ vector<vector<int>> threeSum(vector<int> &nums) {
 }
 ```
 
-Python3
+__Python3__
 ```python
 def threeSum(nums: 'List[int]') -> 'List[List[int]]':
     ans = []
@@ -166,7 +165,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
-C++
+__C++__
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
     int res = nums[0] + nums[1] + nums[2], n = nums.size();
@@ -190,7 +189,7 @@ int threeSumClosest(vector<int> &nums, int target) {
 }
 ```
 
-Python3
+__Python3__
 ```python
 def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
     nums.sort()
@@ -340,6 +339,11 @@ Your algorithm should run in O(n) time and uses constant extra space.
 Input: [3,4,-1,1]
 Output: 2
 ```
+
+***Solution***:
+1.
+1.
+
 
 __Python3__
 ```python
