@@ -24,7 +24,7 @@ https://martingalefield.github.io/
     - [Contains Duplicate III](#contains-duplicate-iii)
 - [Linked List](#linked-list)
 - [Binary Tree](#binary-tree)
-    - [Binary Tree Inorder Traversal](#94.-binary-tree-inorder-traversal)
+    - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
 
 
 <!-- /TOC -->
