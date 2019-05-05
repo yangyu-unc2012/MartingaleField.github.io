@@ -284,6 +284,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
+
 C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
@@ -304,6 +305,12 @@ int removeDuplicates(vector<int> &nums) {
 Given a sorted array `nums`, remove the duplicates **in-place** such that duplicates appeared at most **twice** and return the new length.
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+*Solution*:
+At first glance, we can follow the same idea as previous problem. Compare `nums[i]` with the current last two elements of the new array. If either of the comparison return false, we can update the new array. 
+
+In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
+- If `nums[i] == nums[j - 1]`, since we allow at most two duplicates, we can copy `nums[i]` to the end of the new array.
 
 C++
 ```c++
