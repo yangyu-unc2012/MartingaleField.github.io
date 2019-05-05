@@ -16,6 +16,7 @@ https://martingalefield.github.io/
     - [Find Missing Positive](#Find-missing-positive)
     - [Insert Interval](#insert-interval)
     - [Majority Element](#majority-element)
+    - [Majority Element II](#majority-element-ii)
 - [Linked List](#Linked-List)
 
 
@@ -407,7 +408,7 @@ def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interv
 ```
 ---
 ### Majority Element
-Given an array of size n, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
+Given an array of size `n`, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
 
 You may assume that the array is non-empty and the majority element always exist in the array.
 
@@ -449,6 +450,71 @@ def majorityElement(nums: 'List[int]') -> 'int':
 ```
 
 ---
+### Majority Element II
+Given an integer array of size `n`, find all elements that appear more than `⌊ n/3 ⌋` times.
+
+Note: The algorithm should run in linear time and in O(1) space.
+
+__C++__
+```c++
+struct Candidate {
+    int num_, count_;
+
+    explicit Candidate(int num, int count) : num_(num), count_(count) {}
+};
+
+vector<int> majorityElement(vector<int> &nums) {
+    vector<int> result;
+    if (nums.empty()) return result;
+    array<Candidate, 2> candidates{Candidate(0, 0), Candidate(1, 0)};
+    for (int num : nums) {
+        bool flag = false;
+        // If num is one of the candidates, increment its freq by 1
+        for (int i = 0; i < 2; ++i) {
+            if (candidates[i].num_ == num) {
+                ++candidates[i].count_;
+                flag = true;
+                break;
+            }
+        }
+        if (flag) continue;
+        // If num is not one of the candidates and we are missing candidates, 
+        // nominate it to be a new candidate
+        for (int i = 0; i < 2; ++i) {
+            if (candidates[i].count_ == 0) {
+                candidates[i].count_ = 1;
+                candidates[i].num_ = num;
+                flag = true;
+                break;
+            }
+        }
+        if (flag) continue;
+        // If num is not one of the candidates nor we are missing any candidates,
+        // pair out current candidates by num
+        for (int i = 0; i < 2; ++i) {
+            --candidates[i].count_;
+        }
+    }
+    // We now have two candidates but we still need to check
+    // if both have votes more than n/3
+    for (int i = 0; i < 2; ++i) {
+        candidates[i].count_ = 0;
+    }
+    for (int num : nums) {
+        for (int i = 0; i < 2; ++i) {
+            if (candidates[i].num_ == num) {
+                ++candidates[i].count_;
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < 2; ++i) {
+        if (candidates[i].count_ > nums.size() / 3)
+            result.emplace_back(candidates[i].num_);
+    }
+    return result;
+}
+```
 
 
 # Linked List
