@@ -306,7 +306,7 @@ Given a sorted array `nums`, remove the duplicates **in-place** such that duplic
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 
-*Solution*:
+***Solution***:
 At first glance, we can follow the same idea as previous problem. Compare `nums[i]` with the current last two elements of the new array. If either of the comparison return false, we can update the new array. 
 
 In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
