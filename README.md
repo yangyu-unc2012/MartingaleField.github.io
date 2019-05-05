@@ -829,6 +829,18 @@ vector<int> inorderTraversal(TreeNode *root) {
 
 #### Solution: Morris
 
+```
+1. Initialize current as root 
+2. While current is not NULL
+   If current has a left child
+      a) Make current as right child of the rightmost 
+         node in current's left subtree
+      b) Go to this left child, i.e., current = current->left
+   Else
+      a) Print current’s data
+      b) Go to the right, i.e., current = current->right
+```
+
 For example, for the tree below, the inorder traversal sequence is
 `[1, 2, 4, 3, 6, 7]`.
 
