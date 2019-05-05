@@ -109,13 +109,9 @@ vector<vector<int>> threeSum(vector<int> &nums) {
                 --k;
                 while (j < k && nums[k] == nums[k + 1]) --k;
             } else {
-                result.push_back({nums[i], nums[j], nums[k]});
-                ++j;
-                --k;
-                while (j < k && nums[j] == nums[j - 1] && nums[k] == nums[k + 1]) {
-                    ++j;
-                    --k;
-                }
+                result.push_back({nums[i], nums[j++], nums[k--]});
+                while (j < k && nums[j] == nums[j - 1] && nums[k] == nums[k + 1])
+                    ++j, --k;
             }
         }
     }
