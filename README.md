@@ -516,6 +516,42 @@ vector<int> majorityElement(vector<int> &nums) {
     return result;
 }
 ```
+---
+### Kth Largest Element in an Array
+Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
+####Example 1:
+```
+Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+```
+####Example 2:
+```
+Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+```
+
+####Solution
+When `nums.size()` is small, sort it first and return the kth element.
+
+####Python3
+```python
+def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
+    nums.sort(reverse=True)
+    return nums[k - 1]
+```
+
+When `nums.size()` is large, use `max heap`.
+####Python3
+```python
+import heapq
+
+def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
+    nums = [-n for n in nums];
+    heapq.heapify(nums)
+    for _ in range(k):
+        ans = heapq.heappop(nums)
+    return -ans
+```
 
 # Linked List
