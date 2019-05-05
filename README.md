@@ -623,5 +623,41 @@ def productExceptSelf(nums: 'List[int]') -> 'List[int]':
     return output
 ```
 ---
+### Missing Number
+Given an array containing n distinct numbers taken from `0, 1, 2, ..., n`, find the one that is missing from the array.
+
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+
+#### Example 1:
+```
+Input: [3,0,1]
+Output: 2
+```
+#### Example 2:
+```
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+```
+
+#### Solution: Math
+The missing one is `sum(0..n) - sum(nums)`.
+##### Python3
+```python
+def missingNumber(nums: 'List[int]') -> 'int':
+    n = len(nums)
+    return (n * (n + 1) // 2) - sum(nums)
+```
+
+#### Solution: Bit Manipulation
+If `A == B`, then `A ^ B == 0`.
+
+##### Python3
+```python
+def missingNumber(nums: 'List[int]') -> 'int':
+    ans = len(nums)
+    for i in range(0, len(nums)):
+        ans ^= (nums[i] ^ i)
+    return ans
+```
 
 # Linked List
