@@ -328,4 +328,31 @@ int removeDuplicates(vector<int> &nums) {
 }
 ```
 
+### Find Missing Positive
+Given an unsorted integer array, find the smallest missing positive integer.
+
+Your algorithm should run in O(n) time and uses constant extra space.
+
+**Example**
+```
+Input: [3,4,-1,1]
+Output: 2
+```
+
+Python3
+```python
+def firstMissingPositive(nums: 'List[int]') -> 'int':
+    for i in range(len(nums)):
+        while nums[i] > 0 and nums[i] <= len(nums) and nums[i] != nums[nums[i] - 1]:
+            correct_idx = nums[i] - 1
+            nums[i], nums[correct_idx] = nums[correct_idx], nums[i]
+
+    for i in range(1, len(nums) + 1):
+        if nums[i - 1] != i:
+            return i
+    return len(nums) + 1
+```
+
+
+
 # Linked List
