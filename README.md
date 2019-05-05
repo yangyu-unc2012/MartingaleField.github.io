@@ -287,32 +287,37 @@ Do not allocate extra space for another array, you must do this by **modifying t
 C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
-    if (nums.empty()) return 0;
-    int j = 0, n = nums.size();
-    for (int i = 0; i < n; ++i) {
-        if (nums[i] == nums[j]) {
-            continue;
+    if (nums.size() < 2)
+        return nums.size();
+    int j = 1;
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i] != nums[j - 1]) {
+            nums[j++] = nums[i];
         }
-        nums[++j] = nums[i];
     }
-    return j + 1;
+    return j;
 }
 ```
 
-Python3
-```python
-def removeDuplicates(nums: 'List[int]') -> 'int':
-    if not nums:
-        return 0
-    j = 0
-    for num in nums:
-        if num == nums[j]:
-            continue
-        j += 1
-        nums[j] = num
-    return j + 1
-```
+### Remove Duplicates from Sorted Array II
 
-###
+Given a sorted array `nums`, remove the duplicates **in-place** such that duplicates appeared at most **twice** and return the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+C++
+```c++
+int removeDuplicates(vector<int> &nums) {
+    if (nums.size() < 3)
+        return nums.size();
+    int j = 2;
+    for (int i = 2; i < nums.size(); ++i) {
+        if (nums[i] != nums[j - 2]) {
+            nums[j++] = nums[i];
+        }
+    }
+    return j;
+}
+```
 
 # Linked List
