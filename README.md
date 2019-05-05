@@ -10,6 +10,8 @@ https://martingalefield.github.io/
     - [3Sum](#3Sum)
     - [3Sum Closest](#3Sum-closest)
     - [4Sum](#4sum)
+    - [4Sum II](#4sum-ii)
+    - [Remove Duplicates from Sorted Array](#Remove-Duplicates-from-Sorted-Array)
 - [Linked List](#Linked-List)
 
 <!-- /TOC -->
@@ -259,5 +261,42 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
 Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j, k, l)` there are such that `A[i] + B[j] + C[k] + D[l]` is zero.
 
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
+
+C++
+```c++
+int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
+    unordered_map<int, int> sum_freq;
+    int ans = 0;
+    for (int a : A)
+        for (int b : B)
+            sum_freq[a + b]++;
+    for (int c : C)
+        for (int d : D)
+            if (sum_freq.count(-(c + d)))
+                ans += sum_freq[-(c + d)];
+    return ans;
+}
+```
+
+### Remove Duplicates from Sorted Array
+
+Given a sorted array `nums`, remove the duplicates in-place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
+
+C++
+```c++
+int removeDuplicates(vector<int> &nums) {
+    if (nums.empty()) return 0;
+    int j = 0, n = nums.size();
+    for (int i = 0; i < n; ++i) {
+        if (nums[i] == nums[j]) {
+            continue;
+        }
+        nums[++j] = nums[i];
+    }
+    return j + 1;
+}
+```
 
 # Linked List
