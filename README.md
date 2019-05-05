@@ -833,6 +833,9 @@ A binary tree is threaded by making all right child pointers that would normally
 
 ![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
 
+We are not caring about the predecessor link (C -> B in diagram) here to print inorder. Hence not entirely a threaded tree is made.
+
+##### Pseudo Code
 ```
 1. Initialize current as root 
 2. While current is not NULL
