@@ -4,24 +4,24 @@ https://martingalefield.github.io/
 
 <!-- TOC depthFrom:2 -->
 
-- [Array](#Array)
-    - [Two Sum](#Two-Sum)
+- [Array](#array)
+    - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
-    - [3Sum](#3Sum)
-    - [3Sum Closest](#3Sum-closest)
+    - [3Sum](#3sum)
+    - [3Sum Closest](#3sum-closest)
     - [4Sum](#4sum)
     - [4Sum II](#4sum-ii)
-    - [Remove Duplicates from Sorted Array](#Remove-Duplicates-from-Sorted-Array)
-    - [Remove Duplicates from Sorted Array II](#Remove-Duplicates-from-Sorted-Array-ii)
-    - [Find Missing Positive](#Find-missing-positive)
+    - [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
+    - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
+    - [Find Missing Positive](#find-missing-positive)
     - [Insert Interval](#insert-interval)
     - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
-    - [Kth Largest Element in an Array](#Kth-Largest-Element-in-an-Array)
-    - [Minimum Size Subarray Sum](#Minimum-Size-Subarray-Sum)
-    - [Product of Array Except Self](#Product-of-Array-Except-Self)
-    - [Missing Number](#Missing-Number)
-- [Linked List](#Linked-List)
+    - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
+    - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
+    - [Product of Array Except Self](#product-of-array-except-self)
+    - [Missing Number](#missing-number)
+- [Linked List](#linked-list)
 
 
 <!-- /TOC -->
