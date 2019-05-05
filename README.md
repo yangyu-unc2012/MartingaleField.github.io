@@ -403,7 +403,38 @@ def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interv
         e = max(e, intervals[~len(right_part)].end)  # a[~i] = a[len(a)-i-1], the i-th element from right to left
     return left_part + [Interval(s, e)] + right_part
 ```
+---
+### Majority Element
+Given an array of size n, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+**C++**
+```c++
+int majorityElement(vector<int> &nums) {
+    int candidate = nums[0], count = 0;
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
+        }
+        count += num == candidate ? 1 : -1;
+    }
+    return candidate;
+}
+```
+
+**Python3**
+```python
+def majorityElement(nums: 'List[int]') -> 'int':
+    count = 0
+    for num in nums:
+        if count == 0:
+            candidate = num
+        count += 1 if candidate == num else -1
+    return candidate
+```
 
 ---
+
 
 # Linked List
