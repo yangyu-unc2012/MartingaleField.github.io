@@ -5,6 +5,9 @@
 - [Array](#Array)
     - [Two Sum](#Two-Sum)
     - [Container With Most Water](#container-with-most-water)
+    - [3Sum](#3Sum)
+    - [3Sum Closest](#3Sum-closest)
+    - [4Sum](#4sum)
 - [Linked List](#Linked-List)
 
 <!-- /TOC -->
