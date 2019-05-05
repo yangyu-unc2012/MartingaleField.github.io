@@ -559,7 +559,7 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 ### Minimum Size Subarray Sum
 Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
 
-### Example
+#### Example
 ```
 Input: s = 7, nums = [2,3,1,2,4,3]
 Output: 2
@@ -580,4 +580,22 @@ int minSubArrayLen(int s, vector<int> &nums) {
     return min_len <= nums.size() ? min_len : 0;
 }
 ```
+---
+### Product of Array Except Self
+Given an array `nums` of `n` integers where `n > 1`,  return an array `output` such that `output[i]` is equal to the product of all the elements of `nums` except `nums[i]`.
+
+Note: Please solve it without division and in O(n).
+
+#### Example:
+```
+Input:  [1,2,3,4]
+Output: [24,12,8,6]
+```
+
+#### Solution
+- Iterate forwards over `nums` and generate `output`
+```
+1,  A[0]
+```
+
 # Linked List
