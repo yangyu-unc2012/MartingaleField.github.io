@@ -534,7 +534,7 @@ Output: 4
 #### Solution
 When `nums.size()` is small, sort it first and return the kth element.
 
-#### Python3
+##### Python3
 ```python
 def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
     nums.sort(reverse=True)
@@ -542,7 +542,7 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 ```
 
 When `nums.size()` is large, use `max heap`.
-#### Python3
+##### Python3
 ```python
 import heapq
 
