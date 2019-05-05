@@ -17,6 +17,7 @@ https://martingalefield.github.io/
     - [Insert Interval](#insert-interval)
     - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
+    - [Kth Largest Element in an Array](#Kth-Largest-Element-in-an-Array)
 - [Linked List](#Linked-List)
 
 
@@ -30,7 +31,7 @@ https://martingalefield.github.io/
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
-#### C++
+##### C++
 ```c++
 vector<int> twoSum(vector<int> &nums, int target) {
     vector<int> ans;
@@ -50,7 +51,7 @@ vector<int> twoSum(vector<int> &nums, int target) {
 }
 ```
 
-#### Python3
+##### Python3
 ```python
 def twoSum(nums: List[int], target: int) -> List[int]:
     num_to_idx = {}
@@ -71,7 +72,7 @@ Use two pointers. Pointer `i` points to the first element and `j` to the last. T
 * If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
 * If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
 
-#### C++
+##### C++
 ```c++
 int maxArea(vector<int> &height) {
     int water = 0;
@@ -86,7 +87,7 @@ int maxArea(vector<int> &height) {
 }
 ```
 
-#### Python3
+##### Python3
 ```python
 def maxArea(self, height: List[int]) -> int:
     i, j = 0, len(height) - 1
@@ -106,7 +107,7 @@ Given an array nums of n integers, are there elements `a, b, c` in nums such tha
 
 The solution set must not contain duplicate triplets.
 
-#### C++
+##### C++
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
     vector<vector<int>> result;
@@ -134,7 +135,7 @@ vector<vector<int>> threeSum(vector<int> &nums) {
 }
 ```
 
-#### Python3
+##### Python3
 ```python
 def threeSum(nums: 'List[int]') -> 'List[List[int]]':
     ans = []
@@ -168,7 +169,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
-#### C++
+##### C++
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
     int res = nums[0] + nums[1] + nums[2], n = nums.size();
@@ -192,7 +193,7 @@ int threeSumClosest(vector<int> &nums, int target) {
 }
 ```
 
-#### Python3
+##### Python3
 ```python
 def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
     nums.sort()
@@ -221,7 +222,7 @@ Given an array `nums` of `n` integers and an integer `target`, are there element
 
 The solution set must not contain duplicate quadruplets.
 
-#### C++
+##### C++
 ```c++
 vector<vector<int>> fourSum(vector<int> &nums, int target) {
     vector<vector<int>> result;
@@ -266,7 +267,7 @@ Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j,
 
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
 
-#### C++
+##### C++
 ```c++
 int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
     unordered_map<int, int> sum_freq;
@@ -289,7 +290,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
 
-#### C++
+##### C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 2)
@@ -317,7 +318,7 @@ At first glance, we can follow the same idea as previous problem. Compare `nums[
 In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
 - If `nums[i] == nums[j - 1]`, since we allow at most two duplicates, we can copy `nums[i]` to the end of the new array.
 
-#### C++
+##### C++
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 3)
@@ -348,7 +349,7 @@ Output: 2
 - Iterate integers `1` to `n + 1` and check one by one if `i` is located at `i - 1` already. If not, then `i` is the first missing positive integer. 
 
 
-#### Python3
+##### Python3
 ```python
 def firstMissingPositive(nums: 'List[int]') -> 'int':
     for i in range(len(nums)):
@@ -374,7 +375,7 @@ Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
 Output: [[1,5],[6,9]]
 ```
 
-#### C++
+##### C++
 ```c++
 vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
     vector<Interval> result;
@@ -395,7 +396,7 @@ vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
 }
 ```
 
-#### Python3
+##### Python3
 ```python
 def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interval]':
     s, e = newInterval.start, newInterval.end
@@ -425,7 +426,7 @@ Input: [2,2,1,1,1,2,2]
 Output: 2
 ```
 
-#### C++
+##### C++
 ```c++
 int majorityElement(vector<int> &nums) {
     int candidate = nums[0], count = 0;
@@ -439,7 +440,7 @@ int majorityElement(vector<int> &nums) {
 }
 ```
 
-#### Python3
+##### Python3
 ```python
 def majorityElement(nums: 'List[int]') -> 'int':
     count = 0
@@ -456,7 +457,7 @@ Given an integer array of size `n`, find all elements that appear more than `⌊
 
 Note: The algorithm should run in linear time and in O(1) space.
 
-#### C++
+##### C++
 ```c++
 struct Candidate {
     int num_, count_;
@@ -520,12 +521,12 @@ vector<int> majorityElement(vector<int> &nums) {
 ### Kth Largest Element in an Array
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
-##### Example 1:
+#### Example 1:
 ```
 Input: [3,2,1,5,6,4] and k = 2
 Output: 5
 ```
-##### Example 2:
+#### Example 2:
 ```
 Input: [3,2,3,1,2,4,5,5,6] and k = 4
 Output: 4
