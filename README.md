@@ -2,7 +2,7 @@
 
 
 
-# LeetCode
+# Table of Contents
 
 <!-- TOC depthFrom:2 -->
 - [Table of Contents](#leetcode)
@@ -73,6 +73,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Container With Most Water
 
@@ -114,7 +115,7 @@ def maxArea(self, height: List[int]) -> int:
             j -= 1
     return ans
 ```
-###### [Back to Front](#leetcode)
+###### [Back to Front](#table-of-contents)
 ---
 ### 3Sum
 Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
@@ -179,6 +180,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
                     k -= 1
     return ans
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### 3Sum Closest
 
@@ -231,6 +233,7 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
                 ans = sum
     return ans
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### 4Sum
 
@@ -277,6 +280,7 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
     return result;
 }
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### 4Sum II
 
@@ -300,6 +304,7 @@ int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D)
     return ans;
 }
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Remove Duplicates from Sorted Array
 
@@ -322,7 +327,7 @@ int removeDuplicates(vector<int> &nums) {
     return j;
 }
 ```
-
+###### [Back to Front](#table-of-contents)
 ---
 ### Remove Duplicates from Sorted Array II
 
@@ -350,6 +355,7 @@ int removeDuplicates(vector<int> &nums) {
     return j;
 }
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Find Missing Positive
 Given an unsorted integer array, find the smallest missing positive integer.
@@ -380,7 +386,7 @@ def firstMissingPositive(nums: 'List[int]') -> 'int':
             return i
     return len(nums) + 1
 ```
-
+###### [Back to Front](#table-of-contents)
 ---
 ### Insert Interval
 Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
@@ -427,6 +433,7 @@ def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interv
         e = max(e, intervals[~len(right_part)].end)  
     return left_part + [Interval(s, e)] + right_part
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Majority Element
 Given an array of size `n`, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
@@ -470,7 +477,7 @@ def majorityElement(nums: 'List[int]') -> 'int':
         count += 1 if candidate == num else -1
     return candidate
 ```
-
+###### [Back to Front](#table-of-contents)
 ---
 ### Majority Element II
 Given an integer array of size `n`, find all elements that appear more than `⌊ n/3 ⌋` times.
@@ -538,6 +545,7 @@ vector<int> majorityElement(vector<int> &nums) {
     return result;
 }
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Kth Largest Element in an Array
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -575,6 +583,7 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
         ans = heapq.heappop(nums)
     return -ans
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Minimum Size Subarray Sum
 Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
@@ -601,6 +610,7 @@ int minSubArrayLen(int s, vector<int> &nums) {
     return min_len <= nums.size() ? min_len : 0;
 }
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Product of Array Except Self
 Given an array `nums` of `n` integers where `n > 1`,  return an array `output` such that `output[i]` is equal to the product of all the elements of `nums` except `nums[i]`.
@@ -643,6 +653,7 @@ def productExceptSelf(nums: 'List[int]') -> 'List[int]':
 
     return output
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Missing Number
 Given an array containing n distinct numbers taken from `0, 1, 2, ..., n`, find the one that is missing from the array.
@@ -680,6 +691,7 @@ def missingNumber(nums: 'List[int]') -> 'int':
         ans ^= (nums[i] ^ i)
     return ans
 ```
+###### [Back to Front](#table-of-contents)
 ---
 
 ### Contains Duplicate III
@@ -879,6 +891,7 @@ vector<int> inorderTraversal(TreeNode *root) {
     return result;
 }
 ```
+###### [Back to Front](#table-of-contents)
 ---
 ### Binary Tree Preorder Traversal
 
