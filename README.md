@@ -14,6 +14,8 @@ https://martingalefield.github.io/
     - [Remove Duplicates from Sorted Array](#Remove-Duplicates-from-Sorted-Array)
     - [Remove Duplicates from Sorted Array II](#Remove-Duplicates-from-Sorted-Array-ii)
     - [Find Missing Positive](#Find-missing-positive)
+    - [Insert Interval](#insert-interval)
+    - [Majority Element](#majority-element)
 - [Linked List](#Linked-List)
 
 
