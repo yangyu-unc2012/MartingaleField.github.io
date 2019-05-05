@@ -252,4 +252,10 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
 }
 ```
 
+### 4Sum II
+
+Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j, k, l)` there are such that `A[i] + B[j] + C[k] + D[l]` is zero.
+
+To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
+
 # Linked List
