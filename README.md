@@ -834,7 +834,7 @@ A binary tree is threaded by making all right child pointers that would normally
 
 ![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
 
-We are not caring about the predecessor link (C -> B in diagram) here to print inorder. Hence not entirely a threaded tree is made.
+The threads we need for inorder traveral is `A->B`, `C->D`, `E->F` and `H->I`. At each subtree, we first thread `p` to `cur` (root of subtree) and next time we print out `p` we can use this thread to visit and print out `cur`. 
 
 ##### Pseudo Code
 ```
@@ -855,20 +855,20 @@ Time complexity O(n), space complexity O(1).
 vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
     TreeNode *cur = root, *p = nullptr;
-    while (cur) {
-        if (!cur->left) { // cur has no left child
+    while (cur != nullptr) {
+        if (cur->left == nullptr) { // cur has no left child
             result.emplace_back(cur->val);
             cur = cur->right;
         } else { // cur has left child
             // Let p point to the rightmost node of cur->left
-            for (p = cur->left; p->right && p->right != cur; p = p->right);
+            for (p = cur->left; p->right != nullptr && p->right != cur; p = p->right);
 
-            if (!p->right) { // if p has no right child
-                p->right = cur; // thread p->right to cur
+            if (p->right == nullptr) { // p has not been threaded to cur
+                p->right = cur; 
                 cur = cur->left;
-            } else { // if p->right is already threaded to cur                
+            } else { // p is already threaded to cur                
                 result.emplace_back(cur->val); // This line is different from preorder traversal
-                p->right = nullptr;
+                p->right = nullptr; // remove thread
                 cur = cur->right;
             }
         }
@@ -931,6 +931,39 @@ vector<int> preorderTraversal(TreeNode *root) {
         result.emplace_back(node->val);
         if (node->right) s.emplace(node->right);
         if (node->left) s.emplace(node->left);
+    }
+    return result;
+}
+```
+
+#### Solution: Morris
+
+![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
+
+The threads we need for preorder traveral is `A->B`, `C->D`, `E->F` and `H->I`. The difference with inorder is that we print out `cur` before threading `p` to `cur`. The reason is that in preorder traversal, we need to visit the root first before traversing the left subtree.
+
+##### C++
+```c++
+vector<int> preorderTraversal(TreeNode *root) {
+    vector<int> result;
+    TreeNode *cur = root, *p = nullptr;
+    while (cur != nullptr) {
+        if (cur->left == nullptr) { // cur has no left child
+            result.emplace_back(cur->val);
+            cur = cur->right;
+        } else { // cur has left child
+            // Let p point to the rightmost node of cur->left
+            for (p = cur->left; p->right != nullptr && p->right != cur; p = p->right);
+
+            if (p->right == nullptr) { // p has not been threaded to cur
+                result.emplace_back(cur->val); // This line is different from inorder traversal
+                p->right = cur;
+                cur = cur->left;
+            } else { // p is already threaded to cur
+                p->right = nullptr; // remove thread
+                cur = cur->right;
+            }
+        }
     }
     return result;
 }
