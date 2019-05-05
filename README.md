@@ -19,6 +19,8 @@ https://martingalefield.github.io/
     - [Majority Element II](#majority-element-ii)
     - [Kth Largest Element in an Array](#Kth-Largest-Element-in-an-Array)
     - [Minimum Size Subarray Sum](#Minimum-Size-Subarray-Sum)
+    - [Product of Array Except Self](#Product-of-Array-Except-Self)
+    - [Missing Number](#Missing-Number)
 - [Linked List](#Linked-List)
 
 
