@@ -603,4 +603,25 @@ Output: [24,12,8,6]
     A[0]*A[1]*...*A[n-3] * A[n-1],  A[0]*A[1]*...*A[n-2] * 1
     ```
     which is the desired result.
+
+##### Python3
+```python
+def productExceptSelf(nums: 'List[int]') -> 'List[int]':
+    n = len(nums)
+    output = [1] * n
+
+    p = 1
+    for i in range(n):
+        output[i] *= p
+        p *= nums[i]
+
+    p = 1
+    for i in range(n - 1, -1, -1):
+        output[i] *= p
+        p *= nums[i]
+
+    return output
+```
+---
+
 # Linked List
