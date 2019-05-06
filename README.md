@@ -1183,6 +1183,10 @@ bool helper(TreeNode *node, TreeNode *min_node = nullptr, TreeNode *max_node = n
 
     return helper(node->right, node, max_node) && helper(node->left, min_node, node);
 }
+
+bool isValidBST(TreeNode *root) {
+    return helper(root);
+}
 ```
 
 ###### [Back to Front](#table-of-contents)
