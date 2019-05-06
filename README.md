@@ -944,7 +944,7 @@ private:
 ```c++
 vector<int> preorderTraversal(TreeNode *root) {
     vector<int> result;
-    stack<TreeNode *> s; // nodes to be visited
+    stack<TreeNode *> s; // nodes that have been visited
     auto node = root;
     while (!s.empty() || node != nullptr) {
         if (node != nullptr) {
@@ -1037,7 +1037,7 @@ vector<int> postorderTraversal(TreeNode *root) {
     while (!s.empty() || node != nullptr) {
         if (node != nullptr) {
             s.push(node);
-            result.insert(result.begin(), node->val); // push_back for preorder
+            result.push_back(node->val);
             node = node->right; // node = node->left for preorder
         } else {
             node = s.top();
@@ -1045,6 +1045,7 @@ vector<int> postorderTraversal(TreeNode *root) {
             node = node->left; // node = node->right for preorder
         }
     }
+    reverse(result.begin(), result.end()); // reverse in the end
     return result;
 }
 ```
@@ -1095,6 +1096,35 @@ private:
         traverse(root->right, level + 1);
     }
 };
+```
+
+#### Solution: Iterative
+
+Do an inorder traversal using the interative way. Push each node and its level in the stack.
+
+##### C++
+```c++
+vector<vector<int>> levelOrder(TreeNode *root) {
+    vector<vector<int>> result;
+    stack<pair<TreeNode *, int>> s;
+    auto node = root;
+    int level = -1;
+    while (!s.empty() || node != nullptr) {
+        if (node != nullptr) {
+            s.push({node, ++level});
+            if (level == result.size())
+                result.emplace_back(vector<int>{});
+            result[level].emplace_back(node->val);
+            node = node->left;
+        } else {
+            node = s.top().first;
+            level = s.top().second;
+            s.pop();
+            node = node->right;
+        }
+    }
+    return result;
+}
 ```
 
 ###### [Back to Front](#table-of-contents)
