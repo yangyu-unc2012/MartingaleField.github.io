@@ -1170,7 +1170,7 @@ Assume a BST is defined as follows:
 - The right subtree of a node contains only nodes with keys **greater than** the node's key.
 - Both the left and right subtrees must also be binary search trees.
 
-#### Solution
+#### Solution: Recursive
 
 ##### C++
 ```c++
@@ -1186,6 +1186,33 @@ bool helper(TreeNode *node, TreeNode *min_node = nullptr, TreeNode *max_node = n
 
 bool isValidBST(TreeNode *root) {
     return helper(root);
+}
+```
+
+#### Solution: Iterative
+
+Do an inorder traversal and compare `node->val` with `pre-val` along the way.
+
+##### C++
+```c++
+bool isValidBST(TreeNode *root) {
+    vector<int> result;
+    stack<TreeNode *> s; // nodes to be visited
+    TreeNode *pre = nullptr, *node = root;
+    while (!s.empty() || node != nullptr) {
+        if (node != nullptr) {
+            s.push(node);
+            node = node->left;
+        } else {
+            node = s.top();
+            s.pop();
+            if (pre != nullptr && node->val <= pre->val)
+                return false;
+            pre = node;
+            node = node->right;
+        }
+    }
+    return true;
 }
 ```
 
