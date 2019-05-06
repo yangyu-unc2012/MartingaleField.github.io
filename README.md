@@ -30,6 +30,7 @@
     - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
     - [Binary Tree Postorder Traversal](#binary-tree-postorder-traversal)
     - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+    - [Validate Binary Search Tree](#validate-binary-search-tree)
 
 
 <!-- /TOC -->
@@ -1126,6 +1127,48 @@ vector<vector<int>> levelOrder(TreeNode *root) {
     return result;
 }
 ```
+
+#### Solution: Queue
+
+##### C++
+```c++
+vector<vector<int>> levelOrder(TreeNode *root) {
+    if (!root) return {};
+
+    vector<vector<int>> result;
+    queue<TreeNode *> current, next;
+    current.emplace(root);
+    while (!current.empty()) {
+        vector<int> level;
+        while (!current.empty()) {
+            auto node = current.front();
+            current.pop();
+            level.emplace_back(node->val);
+            if (node->left) next.emplace(node->left);
+            if (node->right) next.emplace(node->right);
+        }
+        result.emplace_back(level);
+        swap(next, current);
+    }
+    return result;
+}
+```
+
+###### [Back to Front](#table-of-contents)
+---
+
+
+# Binary Search Tree
+
+### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
+
+Given a binary tree, determine if it is a valid binary search tree (BST).
+
+Assume a BST is defined as follows:
+
+- The left subtree of a node contains only nodes with keys less than the node's key.
+- The right subtree of a node contains only nodes with keys greater than the node's key.
+- Both the left and right subtrees must also be binary search trees.
 
 ###### [Back to Front](#table-of-contents)
 ---
