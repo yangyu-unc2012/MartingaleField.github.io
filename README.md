@@ -29,6 +29,7 @@
     - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
     - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
     - [Binary Tree Postorder Traversal](#binary-tree-postorder-traversal)
+    - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
 
 
 <!-- /TOC -->
@@ -1047,5 +1048,54 @@ vector<int> postorderTraversal(TreeNode *root) {
     return result;
 }
 ```
+###### [Back to Front](#table-of-contents)
+---
+
+### [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+
+Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+##### Example
+```
+Given binary tree [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its level order traversal as:
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+
+#### Solution: Recursive
+##### C++
+```c++
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode *root) {
+        traverse(root, 0);
+        return result;
+    }
+
+private:
+    vector<vector<int>> result;
+
+    void traverse(TreeNode *root, int level) {
+        if (root == nullptr) return;
+
+        if (level == result.size())
+            result.emplace_back(vector<int>{});
+
+        result[level].emplace_back(root->val);
+        traverse(root->left, level + 1);
+        traverse(root->right, level + 1);
+    }
+};
+```
+
 ###### [Back to Front](#table-of-contents)
 ---
