@@ -30,6 +30,7 @@
     - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
     - [Binary Tree Postorder Traversal](#binary-tree-postorder-traversal)
     - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+- [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
 
 
@@ -1165,9 +1166,29 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
 Assume a BST is defined as follows:
-- The left subtree of a node contains only nodes with keys less than the node's key.
-- The right subtree of a node contains only nodes with keys greater than the node's key.
+- The left subtree of a node contains only nodes with keys **less than** the node's key.
+- The right subtree of a node contains only nodes with keys **greater than** the node's key.
 - Both the left and right subtrees must also be binary search trees.
+
+#### Solution
+
+##### C++
+```c++
+bool isValidBSTHelper(TreeNode *node, TreeNode *&prev) {
+    if (node == nullptr) return true;
+    if (!isValidBSTHelper(node->left, prev))
+        return false;
+    if (prev != nullptr && prev->val >= node->val)
+        return false;
+    prev = node;
+    return isValidBSTHelper(node->right, prev);
+}
+
+bool isValidBST(TreeNode *root) {
+    TreeNode *prev = nullptr;
+    return isValidBSTHelper(root, prev);
+}
+```
 
 ###### [Back to Front](#table-of-contents)
 ---
