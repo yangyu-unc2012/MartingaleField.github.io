@@ -812,7 +812,7 @@ private:
     vector<int> result;
 
     void inorder(TreeNode *root) {
-        if (!root) return;
+        if (root == nullptr) return;
         
         inorder(root->left);
         result.push_back(root->val);
@@ -829,8 +829,8 @@ vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
     stack<TreeNode *> s; // nodes to be visited
     auto node = root;
-    while (!s.empty() || node) {
-        if (node) {
+    while (!s.empty() || node != nullptr) {
+        if (node != nullptr) {
             s.push(node);
             node = node->left;
         } else {
@@ -896,6 +896,7 @@ vector<int> inorderTraversal(TreeNode *root) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
+
 ### [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
 
 Given a binary tree, return the preorder traversal of its nodes' values.
@@ -927,7 +928,7 @@ private:
     vector<int> result;
 
     void preorder(TreeNode *root) {
-        if (!root) return;
+        if (root == nullptr) return;
 
         result.push_back(root->val);
         preorder(root->left);
@@ -942,14 +943,18 @@ private:
 ```c++
 vector<int> preorderTraversal(TreeNode *root) {
     vector<int> result;
-    stack<TreeNode *> s;
-    if (root) s.emplace(root);
-    while (!s.empty()) {
-        auto node = s.top();
-        s.pop();
-        result.emplace_back(node->val);
-        if (node->right) s.emplace(node->right);
-        if (node->left) s.emplace(node->left);
+    stack<TreeNode *> s; // nodes to be visited
+    auto node = root;
+    while (!s.empty() || node != nullptr) {
+        if (node != nullptr) {
+            s.push(node);
+            result.emplace_back(node->val);
+            node = node->left;
+        } else {
+            node = s.top();
+            s.pop();
+            node = node->right;
+        }
     }
     return result;
 }
@@ -993,3 +998,54 @@ vector<int> preorderTraversal(TreeNode *root) {
 ---
 
 ### [Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+
+Given a binary tree, return the postorder traversal of its nodes' values.
+
+#### Solution: Recursive
+
+##### C++
+```c++
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode *root) {
+        preorder(root);
+        return result;
+    }
+
+private:
+    vector<int> result;
+
+    void preorder(TreeNode *root) {
+        if (!root) return;
+
+        preorder(root->left);
+        preorder(root->right);
+        result.push_back(root->val);
+    }
+};
+```
+
+#### Solution: Iterative
+
+##### C++
+```c++
+vector<int> postorderTraversal(TreeNode *root) {
+    vector<int> result;
+    stack<TreeNode *> s; // nodes to be visited
+    auto node = root;
+    while (!s.empty() || node != nullptr) {
+        if (node != nullptr) {
+            s.push(node);
+            result.insert(result.begin(), node->val); // push_back for preorder
+            node = node->right; // node = node->left for preorder
+        } else {
+            node = s.top();
+            s.pop();
+            node = node->left; // node = node->right for preorder
+        }
+    }
+    return result;
+}
+```
+###### [Back to Front](#table-of-contents)
+---
