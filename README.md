@@ -1174,19 +1174,14 @@ Assume a BST is defined as follows:
 
 ##### C++
 ```c++
-bool isValidBSTHelper(TreeNode *node, TreeNode *&prev) {
+bool helper(TreeNode *node, TreeNode *min_node = nullptr, TreeNode *max_node = nullptr) {
     if (node == nullptr) return true;
-    if (!isValidBSTHelper(node->left, prev))
-        return false;
-    if (prev != nullptr && prev->val >= node->val)
-        return false;
-    prev = node;
-    return isValidBSTHelper(node->right, prev);
-}
 
-bool isValidBST(TreeNode *root) {
-    TreeNode *prev = nullptr;
-    return isValidBSTHelper(root, prev);
+    if ((min_node != nullptr && node->val <= min_node->val) ||
+        (max_node != nullptr && node->val >= max_node->val))
+        return false;
+
+    return helper(node->right, node, max_node) && helper(node->left, min_node, node);
 }
 ```
 
