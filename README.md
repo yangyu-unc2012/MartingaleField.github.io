@@ -32,7 +32,7 @@
     - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
     - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
     - [Same Tree](#same-tree)
-    - [Construct Binary Tree from Preorder and Inorder Traversal](construct-binary-tree-from-preorder-and-inorder-traversal)
+    - [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
