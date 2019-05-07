@@ -1662,21 +1662,13 @@ root [ left subtree ] [ right subtree ]
 ```
 We first find the position of root (i.e. `*begin(preorder)`) in inorder vector. The size of left subtree is then `distance(begin(inorder), in_root_pos)`. Then recursively build left and right subtrees.
 - For left subtree, the inorder vector is
-    ```
-    inorder[0..left_size - 1]
-    ```
+    `inorder[0..left_size - 1]`
     the preorder vector is
-    ```
-    preorder[1..left_size]
-    ```
+    `preorder[1..left_size]`
 - For right subtree, the inorder vector is
-    ```
-    inorder[in_root_pos + 1..in_last]
-    ```
+    `inorder[in_root_pos + 1..in_last]`
     the preorder vector is
-    ```
-    preorder[left_size + 1..pre_last]
-    ```
+    `preorder[left_size + 1..pre_last]`
 
 ##### C++
 ```c++
