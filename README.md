@@ -33,6 +33,7 @@
     - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
     - [Same Tree](#same-tree)
     - [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
+    - [Construct Binary Tree from Inorder and Postorder Traversal](#construct-binary-tree-from-inorder-and-postorder-traversal)
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
@@ -1634,7 +1635,7 @@ bool isSymmetric(TreeNode *root) {
 
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
-Note: You may assume that duplicates do not exist in the tree.
+You may assume that duplicates do not exist in the tree.
 
 For example, given
 ```
@@ -1693,4 +1694,27 @@ TreeNode *buildTree(InputIterator pre_first, InputIterator pre_last,
 TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
     return buildTree(begin(preorder), end(preorder), begin(inorder), end(inorder));
 }
+```
+###### [Back to Front](#table-of-contents)
+---
+
+
+#### [Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+```
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+```
+Return the following binary tree:
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
 ```
