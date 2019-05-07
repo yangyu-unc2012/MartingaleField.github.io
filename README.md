@@ -31,9 +31,11 @@
     - [Binary Tree Postorder Traversal](#binary-tree-postorder-traversal)
     - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
     - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
+    - [Same Tree](#same-tree)
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
+
 
 
 <!-- /TOC -->
@@ -1573,3 +1575,21 @@ private:
 
 
 
+### [Same Tree](https://leetcode.com/problems/same-tree/)
+
+Given two binary trees, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+
+#### Solution: Recursive
+
+##### C++
+```c++
+bool isSameTree(TreeNode *p, TreeNode *q) {
+    if (!p && !q) return true;
+    if (!p || !q) return false;
+    return p->val == q->val
+           && isSameTree(p->left, q->left)
+           && isSameTree(p->right, q->right);
+}
+```
