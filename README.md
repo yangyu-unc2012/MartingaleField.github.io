@@ -32,6 +32,7 @@
     - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
     - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
     - [Same Tree](#same-tree)
+    - [Construct Binary Tree from Preorder and Inorder Traversal](construct-binary-tree-from-preorder-and-inorder-traversal)
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
@@ -1626,3 +1627,70 @@ bool isSymmetric(TreeNode *root) {
 
 ###### [Back to Front](#table-of-contents)
 ---
+
+
+
+### [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+Given preorder and inorder traversal of a tree, construct the binary tree.
+
+Note: You may assume that duplicates do not exist in the tree.
+
+For example, given
+```
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+```
+Return the following binary tree:
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+#### Solution
+
+For inorder traversal
+```
+[ left subtree ] root [ right subtree ]
+```
+For preorder traversal
+```
+root [ left subtree ] [ right subtree ]
+```
+We first find the position of root (i.e. `*begin(preorder)`) in inorder vector. The size of left subtree is then `distance(begin(inorder), in_root_pos)`. Then recursively build left and right subtrees.
+- For left subtree, the inorder vector is
+    ```inorder[0..left_size - 1]```
+    the preorder vector is
+    ```preorder[1..left_size]```
+- For right subtree, the inorder vector is
+    ```inorder[in_root_pos + 1..in_last]```
+    the preorder vector is
+    ```preorder[left_size + 1..pre_last]```
+
+##### C++
+```c++
+template<typename InputIterator>
+TreeNode *buildTree(InputIterator pre_first, InputIterator pre_last,
+                    InputIterator in_first, InputIterator in_last) {
+    if (pre_first == pre_last) return nullptr;
+    if (in_first == in_last) return nullptr;
+
+    auto root = new TreeNode(*pre_first);
+    auto in_root_pos = find(in_first, in_last, *pre_first);
+    auto left_size = distance(in_first, in_root_pos);
+
+    root->left = buildTree(next(pre_first), next(pre_first, left_size + 1),
+                           in_first, next(in_first, left_size));
+    root->right = buildTree(next(pre_first, left_size + 1), pre_last,
+                            next(in_root_pos), in_last);
+
+    return root;
+}
+
+TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+    return buildTree(begin(preorder), end(preorder), begin(inorder), end(inorder));
+}
+```
