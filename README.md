@@ -1683,10 +1683,8 @@ TreeNode *buildTree(InputIterator pre_first, InputIterator pre_last,
     auto in_root_pos = find(in_first, in_last, *pre_first);
     auto left_size = distance(in_first, in_root_pos);
 
-    root->left = buildTree(next(pre_first), next(pre_first, left_size + 1),
-                           in_first, next(in_first, left_size));
-    root->right = buildTree(next(pre_first, left_size + 1), pre_last,
-                            next(in_root_pos), in_last);
+    root->left = buildTree(next(pre_first), next(pre_first, left_size + 1), in_first, next(in_first, left_size));
+    root->right = buildTree(next(pre_first, left_size + 1), pre_last, next(in_root_pos), in_last);
 
     return root;
 }
@@ -1718,3 +1716,32 @@ Return the following binary tree:
     /  \
    15   7
 ```
+
+#### Solution
+
+##### C++
+```c++
+template<typename InputIterator>
+TreeNode *buildTree(InputIterator in_first, InputIterator in_last,
+                    InputIterator post_first, InputIterator post_last) {
+    if (in_first == in_last) return nullptr;
+    if (post_first == post_last) return nullptr;
+
+    auto root_val = *prev(post_last);
+    TreeNode *root = new TreeNode(root_val);
+
+    auto in_root_pos = find(in_first, in_last, root_val);
+    auto left_size = distance(in_first, in_root_pos);
+
+    root->left = buildTree(in_first, in_root_pos, post_first, next(post_first, left_size));
+    root->right = buildTree(next(in_root_pos), in_last, next(post_first, left_size), prev(post_last));
+    return root;
+}
+
+TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
+    return buildTree(begin(inorder), end(inorder), begin(postorder), end(postorder));
+}
+```
+
+###### [Back to Front](#table-of-contents)
+---
