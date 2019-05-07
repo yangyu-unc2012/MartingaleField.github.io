@@ -30,6 +30,7 @@
     - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
     - [Binary Tree Postorder Traversal](#binary-tree-postorder-traversal)
     - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+    - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
 
@@ -39,7 +40,7 @@
 # Array
 
 
-### Two Sum
+### [Two Sum](#https://leetcode.com/problems/two-sum/)
 
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
@@ -79,7 +80,11 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Container With Most Water
+
+
+
+
+### [Container With Most Water](#https://leetcode.com/problems/container-with-most-water/)
 
 Given `n` non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
@@ -121,7 +126,12 @@ def maxArea(self, height: List[int]) -> int:
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### 3Sum
+
+
+
+
+### [3Sum](#https://leetcode.com/problems/3sum/)
+
 Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
 
 The solution set must not contain duplicate triplets.
@@ -186,7 +196,11 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### 3Sum Closest
+
+
+
+
+### [3Sum Closest](#https://leetcode.com/problems/3sum-closest/)
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
@@ -239,7 +253,11 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### 4Sum
+
+
+
+
+### [4Sum](#https://leetcode.com/problems/4sum/)
 
 Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in `nums` such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
 
@@ -286,7 +304,11 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### 4Sum II
+
+
+
+
+### [4Sum II](#https://leetcode.com/problems/4sum-ii/)
 
 Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j, k, l)` there are such that `A[i] + B[j] + C[k] + D[l]` is zero.
 
@@ -310,7 +332,11 @@ int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D)
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Remove Duplicates from Sorted Array
+
+
+
+
+### [Remove Duplicates from Sorted Array](#https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 Given a sorted array `nums`, remove the duplicates in-place such that each element appear only once and return the new length.
 
@@ -333,7 +359,11 @@ int removeDuplicates(vector<int> &nums) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Remove Duplicates from Sorted Array II
+
+
+
+
+### [Remove Duplicates from Sorted Array II](#https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 Given a sorted array `nums`, remove the duplicates **in-place** such that duplicates appeared at most **twice** and return the new length.
 
@@ -361,7 +391,12 @@ int removeDuplicates(vector<int> &nums) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Find Missing Positive
+
+
+
+
+### [Find Missing Positive](#https://leetcode.com/problems/first-missing-positive/)
+
 Given an unsorted integer array, find the smallest missing positive integer.
 
 Your algorithm should run in O(n) time and uses constant extra space.
@@ -392,7 +427,12 @@ def firstMissingPositive(nums: 'List[int]') -> 'int':
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Insert Interval
+
+
+
+
+### [Insert Interval](#https://leetcode.com/problems/insert-interval/)
+
 Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
 
 You may assume that the intervals were initially sorted according to their start times.
@@ -439,7 +479,12 @@ def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interv
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Majority Element
+
+
+
+
+### [Majority Element](#https://leetcode.com/problems/majority-element/)
+
 Given an array of size `n`, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
 
 You may assume that the array is non-empty and the majority element always exist in the array.
@@ -483,7 +528,12 @@ def majorityElement(nums: 'List[int]') -> 'int':
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Majority Element II
+
+
+
+
+### [Majority Element II](#https://leetcode.com/problems/majority-element-ii/)
+
 Given an integer array of size `n`, find all elements that appear more than `⌊ n/3 ⌋` times.
 
 Note: The algorithm should run in linear time and in O(1) space.
@@ -551,7 +601,11 @@ vector<int> majorityElement(vector<int> &nums) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Kth Largest Element in an Array
+
+
+
+### [Kth Largest Element in an Array](#https://leetcode.com/problems/kth-largest-element-in-an-array/)
+
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
 ##### Example 1:
@@ -589,7 +643,11 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Minimum Size Subarray Sum
+
+
+
+### [Minimum Size Subarray Sum](#https://leetcode.com/problems/minimum-size-subarray-sum/)
+
 Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
 
 ##### Example
@@ -616,7 +674,10 @@ int minSubArrayLen(int s, vector<int> &nums) {
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Product of Array Except Self
+
+
+### [Product of Array Except Self](#https://leetcode.com/problems/product-of-array-except-self/)
+
 Given an array `nums` of `n` integers where `n > 1`,  return an array `output` such that `output[i]` is equal to the product of all the elements of `nums` except `nums[i]`.
 
 Note: Please solve it without division and in O(n).
@@ -659,7 +720,10 @@ def productExceptSelf(nums: 'List[int]') -> 'List[int]':
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-### Missing Number
+
+
+
+### [Missing Number](#https://leetcode.com/problems/missing-number/)
 Given an array containing n distinct numbers taken from `0, 1, 2, ..., n`, find the one that is missing from the array.
 
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
@@ -698,7 +762,7 @@ def missingNumber(nums: 'List[int]') -> 'int':
 ###### [Back to Front](#table-of-contents)
 ---
 
-### Contains Duplicate III
+### [Contains Duplicate III](#https://leetcode.com/problems/contains-duplicate-iii/)
 
 Given an array of integers, find out whether there are two distinct indices `i` and `j` in the array such that the **absolute** difference between `nums[i]` and `nums[j]` is at most `t` and the **absolute** difference between `i` and `j` is at most `k`.
 
@@ -784,7 +848,7 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
 
 # Binary Tree
 
-### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 
 Given a binary tree, return the inorder traversal of its nodes' values.
 
@@ -900,7 +964,7 @@ vector<int> inorderTraversal(TreeNode *root) {
 ###### [Back to Front](#table-of-contents)
 ---
 
-### [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
+### [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
 
 Given a binary tree, return the preorder traversal of its nodes' values.
 
@@ -1000,7 +1064,7 @@ vector<int> preorderTraversal(TreeNode *root) {
 ###### [Back to Front](#table-of-contents)
 ---
 
-### [Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+### [Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 
 Given a binary tree, return the postorder traversal of its nodes' values.
 
@@ -1054,7 +1118,7 @@ vector<int> postorderTraversal(TreeNode *root) {
 ###### [Back to Front](#table-of-contents)
 ---
 
-### [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+### [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
@@ -1158,10 +1222,14 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 ###### [Back to Front](#table-of-contents)
 ---
 
+### [Binary Tree Zigzag Level Order Traversal](#https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+###### [Back to Front](#table-of-contents)
+---
 
 # Binary Search Tree
 
-### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
+### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
 
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
