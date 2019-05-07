@@ -1456,29 +1456,37 @@ void recoverTree(TreeNode *root) {
 
 ##### C++
 ```c++
-void recoverTree(TreeNode *root) {
-    vector<TreeNode *> inorder;
-    stack<TreeNode *> s;
-    TreeNode *pre = nullptr, *cur = root, *broken1 = nullptr, *broken2 = nullptr;
-    while (!s.empty() || cur != nullptr) {
-        if (cur != nullptr) {
-            s.push(cur);
-            cur = cur->left;
-        } else {
-            cur = s.top();
-            s.pop();
-            if (!inorder.empty() && cur->val < inorder.back()->val) {
-                if (broken1 == nullptr)
-                    broken1 = inorder.back();
-                if (broken1 != nullptr)
-                    broken2 = cur;
+class Solution {
+public:
+    void recoverTree(TreeNode *root) {
+        stack<TreeNode *> s;
+        TreeNode *pre = nullptr, *cur = root;
+        while (!s.empty() || cur != nullptr) {
+            if (cur != nullptr) {
+                s.push(cur);
+                cur = cur->left;
+            } else {
+                cur = s.top();
+                s.pop();
+                detect(pre, cur);
+                pre = cur;
+                cur = cur->right;
             }
-            inorder.emplace_back(cur);
-            cur = cur->right;
+        }
+        swap(broken1->val, broken2->val);
+    }
+
+private:
+    TreeNode *broken1 = nullptr, *broken2 = nullptr;
+
+    void detect(TreeNode *prev, TreeNode *curr) {
+        if (prev != nullptr && prev->val > curr->val) {
+            if (broken1 == nullptr)
+                broken1 = prev;
+            broken2 = curr;
         }
     }
-    swap(broken1->val, broken2->val);
-}
+};
 ```
 
 #### Solution: Recursive, O(1) space
@@ -1497,19 +1505,68 @@ public:
 private:
     TreeNode *broken1 = nullptr, *broken2 = nullptr, *pre = nullptr;
 
+    void detect(TreeNode *prev, TreeNode *curr) {
+        if (prev != nullptr && prev->val > curr->val) {
+            if (broken1 == nullptr)
+                broken1 = prev;
+            broken2 = curr;
+        }
+    }
+
     void inorder(TreeNode *cur) {
         if (cur == nullptr) return;
 
         inorder(cur->left);
-        if (pre != nullptr && pre->val > cur->val) {
-            if (broken1 == nullptr)
-                broken1 = pre;
-            if (broken1 != nullptr)
-                broken2 = cur;
-        }
+        detect(pre, cur);
         pre = cur;
         inorder(cur->right);
     }
 };
 ```
 
+
+#### Solution: Morris
+
+##### C++
+```c++
+class Solution {
+public:
+    void recoverTree(TreeNode *root) {
+        TreeNode *prev = nullptr, *cur = root, *p = nullptr;
+        while (cur != nullptr) {
+            if (cur->left == nullptr) {
+                detect(prev, cur); // "visit"
+                prev = cur;
+                cur = cur->right;
+            } else {
+                for (p = cur->left; p->right != nullptr && p->right != cur; p = p->right);
+
+                if (p->right == nullptr) {
+                    p->right = cur;
+                    cur = cur->left;
+                } else {
+                    detect(prev, cur); // "visit"
+                    prev = cur;
+                    p->right = nullptr;
+                    cur = cur->right;
+                }
+            }
+        }
+        swap(broken1->val, broken2->val);
+    }
+
+private:
+    TreeNode *broken1 = nullptr, *broken2 = nullptr;
+
+    void detect(TreeNode *prev, TreeNode *curr) {
+        if (prev != nullptr && prev->val > curr->val) {
+            if (broken1 == nullptr)
+                broken1 = prev;
+            broken2 = curr;
+        }
+    }
+};
+```
+
+###### [Back to Front](#table-of-contents)
+---
