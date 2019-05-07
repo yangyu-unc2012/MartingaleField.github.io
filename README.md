@@ -1223,7 +1223,67 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 
 ### [Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 
+#### Solution: Recursive
 
+##### C++
+```c++
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
+        traverse(root, 0);
+        return result;
+    }
+
+private:
+    vector<vector<int>> result;
+
+    void traverse(TreeNode *root, int level) {
+        if (root == nullptr) return;
+
+        if (level == result.size())
+            result.push_back({});
+
+        if (level % 2 == 0) // traverse left to right if row index is even
+            result[level].push_back(root->val);
+        else // traverse right to left if row index is odd
+            result[level].insert(result[level].begin(), root->val);
+
+        traverse(root->left, level + 1);
+        traverse(root->right, level + 1);
+    }
+};
+```
+
+#### Solution: Iterative, Stack
+
+##### C++
+```c++
+vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
+    vector<vector<int>> result;
+    stack<pair<TreeNode *, int>> s;
+    auto node = root;
+    int level = -1;
+    bool isLR = true;
+    while (!s.empty() || node != nullptr) {
+        if (node != nullptr) {
+            s.push({node, ++level});
+            if (level == result.size())
+                result.push_back({});
+            if (level % 2 == 0)
+                result[level].push_back(node->val);
+            else
+                result[level].insert(result[level].begin(), node->val);
+            node = node->left;
+        } else {
+            node = s.top().first;
+            level = s.top().second;
+            s.pop();
+            node = node->right;
+        }
+    }
+    return result;
+}
+```
 
 ###### [Back to Front](#table-of-contents)
 ---
