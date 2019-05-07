@@ -33,6 +33,7 @@
     - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
+    - [Recover Binary Search Tree](#recover-binary-search-tree)
 
 
 <!-- /TOC -->
@@ -1567,6 +1568,8 @@ private:
     }
 };
 ```
-
 ###### [Back to Front](#table-of-contents)
 ---
+
+
+
