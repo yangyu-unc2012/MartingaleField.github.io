@@ -1165,7 +1165,7 @@ private:
 
 #### Solution: Iterative
 
-Do an inorder traversal using the interative way. Push each node and its level in the stack.
+Do an **preorder** traversal using the interative way. Push each node and its level in the stack.
 
 ##### C++
 ```c++
@@ -1223,6 +1223,26 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 
 ### [Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 
+Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
+
+For example:
+Given binary tree `[3,9,20,null,null,15,7]`,
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+return its zigzag level order traversal as:
+```
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+```
+
 #### Solution: Recursive
 
 ##### C++
@@ -1245,7 +1265,7 @@ private:
 
         if (level % 2 == 0) // traverse left to right if row index is even
             result[level].push_back(root->val);
-        else // traverse right to left if row index is odd
+        else                // traverse right to left if row index is odd
             result[level].insert(result[level].begin(), root->val);
 
         traverse(root->left, level + 1);
@@ -1347,3 +1367,127 @@ bool isValidBST(TreeNode *root) {
 
 ###### [Back to Front](#table-of-contents)
 ---
+
+
+
+
+### [Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)
+
+Two elements of a binary search tree (BST) are swapped by mistake.
+
+Recover the tree without changing its structure.
+
+##### Example 1:
+```
+Input: [1,3,null,null,2]
+
+   1
+  /
+ 3
+  \
+   2
+
+Output: [3,1,null,null,2]
+
+   3
+  /
+ 1
+  \
+   2
+```
+
+##### Example 2:
+```
+Input: [3,1,4,null,null,2]
+
+  3
+ / \
+1   4
+   /
+  2
+
+Output: [2,1,4,null,null,3]
+
+  2
+ / \
+1   4
+   /
+  3
+```
+
+#### Solution: Straightforward, O(n) space
+
+We can use a `vector<TreeNode *> inorder` to store the inorder-traversed nodes. This can be implemented by any one of the inorder traversal approaches (recursive, stack-based iterative or Morris). If the BST is valid, `inorder` should be non-decreasing. We can then forwards-iterate the vector and find the node `broken1` which violates the ordering. Similarly, we can backwards-iterate the vector and find the node `broken2` which violates the ordering. Swapping `broken1` and `broken2` yields the valid BST.
+
+##### C++
+```c++
+void recoverTree(TreeNode *root) {
+    vector<TreeNode *> inorder;
+    stack<TreeNode *> s;
+    auto cur = root, broken1 = root, broken2 = root;
+    while (!s.empty() || cur) {
+        if (cur) {
+            s.push(cur);
+            cur = cur->left;
+        } else {
+            cur = s.top();
+            s.pop();
+            inorder.emplace_back(cur);
+            cur = cur->right;
+        }
+    }
+    for (int i = 0; i < inorder.size() - 1; ++i) {
+        if (inorder[i]->val > inorder[i + 1]->val) {
+            broken1 = inorder[i];
+            break;
+        }
+    }
+    for (int i = inorder.size() - 1; i > 0; --i) {
+        if (inorder[i]->val < inorder[i - 1]->val) {
+            broken2 = inorder[i];
+            break;
+        }
+    }
+    swap(broken1->val, broken2->val);
+}
+```
+
+#### Solution: Recursive, O(1) space
+
+Actually, we don't need to record all inorder-traversed nodes. We simply need a `TreeNode *pre` which points to the inorder predecessor of the currently visiting node.
+
+##### C++
+```c++
+class Solution {
+public:
+    void recoverTree(TreeNode *root) {
+        inorder(root);
+        swap(broken1->val, broken2->val);
+    }
+
+private:
+    TreeNode *broken1 = nullptr, *broken2 = nullptr, *pre = nullptr;
+
+    void inorder(TreeNode *cur) {
+        if (cur == nullptr) return;
+
+        inorder(cur->left);
+
+        if (pre != nullptr && pre->val > cur->val) {
+            if (broken1 == nullptr) {
+                broken1 = pre;
+                broken2 = cur;
+            } else {
+                broken2 = cur;
+                return;
+            }
+        }
+        // All nodes after broken1 with val > broken1->val cannot be broken2
+        if (broken1 != nullptr && cur->val > broken1->val)
+            return;
+        pre = cur;
+
+        inorder(cur->right);
+    }
+};
+```
