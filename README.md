@@ -1452,6 +1452,35 @@ void recoverTree(TreeNode *root) {
 }
 ```
 
+#### Solution: Iterative, Stack
+
+##### C++
+```c++
+void recoverTree(TreeNode *root) {
+    vector<TreeNode *> inorder;
+    stack<TreeNode *> s;
+    TreeNode *pre = nullptr, *cur = root, *broken1 = nullptr, *broken2 = nullptr;
+    while (!s.empty() || cur != nullptr) {
+        if (cur != nullptr) {
+            s.push(cur);
+            cur = cur->left;
+        } else {
+            cur = s.top();
+            s.pop();
+            if (!inorder.empty() && cur->val < inorder.back()->val) {
+                if (broken1 == nullptr)
+                    broken1 = inorder.back();
+                if (broken1 != nullptr)
+                    broken2 = cur;
+            }
+            inorder.emplace_back(cur);
+            cur = cur->right;
+        }
+    }
+    swap(broken1->val, broken2->val);
+}
+```
+
 #### Solution: Recursive, O(1) space
 
 Actually, we don't need to record all inorder-traversed nodes. We simply need a `TreeNode *pre` which points to the inorder predecessor of the currently visiting node.
@@ -1472,22 +1501,15 @@ private:
         if (cur == nullptr) return;
 
         inorder(cur->left);
-
         if (pre != nullptr && pre->val > cur->val) {
-            if (broken1 == nullptr) {
+            if (broken1 == nullptr)
                 broken1 = pre;
+            if (broken1 != nullptr)
                 broken2 = cur;
-            } else {
-                broken2 = cur;
-                return;
-            }
         }
-        // All nodes after broken1 with val > broken1->val cannot be broken2
-        if (broken1 != nullptr && cur->val > broken1->val)
-            return;
         pre = cur;
-
         inorder(cur->right);
     }
 };
 ```
+
