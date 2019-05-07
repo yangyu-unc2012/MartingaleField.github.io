@@ -1653,11 +1653,11 @@ Return the following binary tree:
 
 #### Solution
 
-For inorder traversal
+Inorder:
 ```
 [ left subtree ] root [ right subtree ]
 ```
-For preorder traversal
+Preorder:
 ```
 root [ left subtree ] [ right subtree ]
 ```
@@ -1720,6 +1720,15 @@ Return the following binary tree:
 ```
 
 #### Solution
+
+Inorder:
+```
+[ left subtree ] root [ right subtree ]
+```
+Postorder:
+```
+[ left subtree ] [ right subtree ] root
+```
 
 ##### C++
 ```c++
