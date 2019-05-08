@@ -1997,7 +1997,7 @@ A solution set is:
 
 #### Solution: DFS
 ##### C++
-```
+```c++
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
@@ -2060,7 +2060,7 @@ Note:
 - The solution set must not contain duplicate combinations.
 
 Example 1:
-```
+```c++
 Input: candidates = [10,1,2,7,6,1,5], target = 8,
 A solution set is:
 [
@@ -2071,7 +2071,7 @@ A solution set is:
 ]
 ```
 Example 2:
-```
+```c++
 Input: candidates = [2,5,2,1,2], target = 5,
 A solution set is:
 [
