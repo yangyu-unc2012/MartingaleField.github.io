@@ -1822,3 +1822,22 @@ def generateParenthesis(n: 'int') -> 'List[str]':
     backtrack("", n, n)
     return ans
 ```
+###### [Back to Front](#table-of-contents)
+---
+
+
+### Sudoku Solver
+
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+A sudoku solution must satisfy all of the following rules:
+
+- Each of the digits 1-9 must occur exactly once in each row.
+- Each of the digits 1-9 must occur exactly once in each column.
+- Each of the the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
+- Empty cells are indicated by the character `'.'`.
+
+You may assume that the given Sudoku puzzle will have a single unique solution.
+
+![image](https://en.wikipedia.org/wiki/Sudoku#/media/File:Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg "A typical Sudoku puzzle")
+![image](https://en.wikipedia.org/wiki/Sudoku#/media/File:Sudoku_Puzzle_by_L2G-20050714_solution_standardized_layout.svg "solution")
