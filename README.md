@@ -1976,7 +1976,7 @@ Note:
 - The solution set must not contain duplicate combinations.
 
 Example 1:
-```
+```c++
 Input: candidates = [2,3,6,7], target = 7,
 A solution set is:
 [
@@ -1985,7 +1985,7 @@ A solution set is:
 ]
 ```
 Example 2:
-```
+```c++
 Input: candidates = [2,3,5], target = 8,
 A solution set is:
 [
@@ -2005,19 +2005,21 @@ public:
         dfs(candidates, target, 0);
         return result;
     }
+
 private:
     vector<vector<int>> result;
     vector<int> path;
-    
-    void dfs(vector<int> &candidates, int gap, int start) {
+
+    void dfs(vector<int> &candidates, int gap, int cur) {
         if (!gap) {
             result.push_back(path);
             return;
         }
-        for (int i = start; i < candidates.size(); ++i) {
+        // start from cur because duplicates are allowed
+        for (int i = cur; i < candidates.size(); ++i) {
             if (gap < candidates[i]) break;
             path.emplace_back(candidates[i]);
-            dfs(candidates, gap - candidates[i], i); 
+            dfs(candidates, gap - candidates[i], i);
             path.pop_back();
         }
     }
@@ -2031,6 +2033,7 @@ def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
         if gap == 0:
             result.append(path[:])
             return
+        # start from cur because duplicates are allowed
         for i in range(start, len(candidates)):
             if gap < candidates[i]:
                 break
@@ -2095,19 +2098,21 @@ private:
     vector<vector<int>> result;
     vector<int> path;
 
-    void dfs(vector<int> &nums, int gap, int start) {
+    void dfs(vector<int> &nums, int gap, int cur) {
         if (!gap) {
             result.push_back(path);
             return;
         }
-        for (int i = start; i < nums.size(); ++i) {
+        for (int i = cur; i < nums.size(); ++i) {
             if (gap < nums[i]) break;
             path.emplace_back(nums[i]);
-            dfs(nums, gap - nums[i], i + 1); // start from i+1 to avoid using the same number again
+            // next step starts from i+1 to avoid using the same number again
+            dfs(nums, gap - nums[i], i + 1);
             path.pop_back();
-            while (i < nums.size() && nums[i] == nums[i + 1]) {
+
+            // Skip duplicates
+            while (i < nums.size() - 1 && nums[i] == nums[i + 1]) 
                 ++i;
-            }
         }
     }
 };
@@ -2116,19 +2121,22 @@ private:
 ##### Python3
 ```python
 def combinationSum2(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
-    def dfs(gap, start):
+    def dfs(gap, cur):
         if gap == 0:
             result.append(path[:])
             return
         prev = None
-        for i in range(start, len(candidates)):
+        for i in range(cur, len(candidates)):
             if gap < candidates[i]:
                 break
+
+            // Skip duplicates
             if prev == candidates[i]:
                 continue
             prev = candidates[i]
 
             path.append(candidates[i])
+            # next step starts from i+1 to avoid using the same number again
             dfs(gap - candidates[i], i + 1)
             path.pop()
 
