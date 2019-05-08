@@ -35,6 +35,7 @@
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
+- [Depth First Search](#depth-first-search)
 
 
 
@@ -1756,3 +1757,51 @@ TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
 
 ###### [Back to Front](#table-of-contents)
 ---
+
+
+
+
+# Depth First Search
+
+### Generate Parentheses
+
+Given `n` pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+For example, given `n = 3`, a solution set is:
+```
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+
+#### Solution: DFS
+
+##### C++
+```c++
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        helper(n, n, "");
+        return result;
+    }
+
+private:
+    vector<string> result;
+
+    void helper(int n_left, int n_right, string valid_prefix) {
+        if (!n_right) {
+            result.emplace_back(valid_prefix);
+            return;
+        }
+        if (n_left > 0) 
+            helper(n_left - 1, n_right, valid_prefix + '(');
+        if (n_right > n_left) 
+            helper(n_left, n_right - 1, valid_prefix + ')');
+    }
+};
+```
+
