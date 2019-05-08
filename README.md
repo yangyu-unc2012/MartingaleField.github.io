@@ -2015,10 +2015,11 @@ private:
             result.push_back(path);
             return;
         }
-        // start from cur because duplicates are allowed
+        
         for (int i = cur; i < candidates.size(); ++i) {
             if (gap < candidates[i]) break;
             path.emplace_back(candidates[i]);
+            // next step starts from i because duplicates are allowed
             dfs(candidates, gap - candidates[i], i);
             path.pop_back();
         }
@@ -2033,11 +2034,11 @@ def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
         if gap == 0:
             result.append(path[:])
             return
-        # start from cur because duplicates are allowed
         for i in range(start, len(candidates)):
             if gap < candidates[i]:
                 break
             path.append(candidates[i])
+            # next step starts from i because duplicates are allowed
             dfs(gap - candidates[i], i)
             path.pop()
 
