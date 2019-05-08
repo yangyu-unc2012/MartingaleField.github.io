@@ -35,6 +35,7 @@
 - [Binary Search Tree](#binary-search-tree)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
+    - [Minimum Distance Between BST Nodes](#minimum-distance-between-bst-nodes)
 - [Depth First Search](#depth-first-search)
     - [Generate Parentheses](#generate-parentheses)
     - [Sudoku Solver](#sudoku-solver)
