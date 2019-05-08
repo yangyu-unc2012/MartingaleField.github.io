@@ -1806,3 +1806,19 @@ private:
 };
 ```
 
+##### Python3
+```python
+def generateParenthesis(n: 'int') -> 'List[str]':
+    def backtrack(s, l, r):
+        if l == 0 and r == 0:
+            ans.append(s)
+            return
+        if l > 0:
+            backtrack(s + '(', l - 1, r)
+        if r > l:
+            backtrack(s + ')', l, r - 1)
+
+    ans = []
+    backtrack("", n, n)
+    return ans
+```
