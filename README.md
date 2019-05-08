@@ -37,6 +37,7 @@
     - [Recover Binary Search Tree](#recover-binary-search-tree)
 - [Depth First Search](#depth-first-search)
     - [Generate Parentheses](#generate-parentheses)
+    - [Sudoku Solver](#sudoku-solver)
 
 
 
@@ -1826,7 +1827,7 @@ def generateParenthesis(n: 'int') -> 'List[str]':
 ---
 
 
-### Sudoku Solver
+### [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)
 
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
@@ -1841,3 +1842,123 @@ You may assume that the given Sudoku puzzle will have a single unique solution.
 
 ![image](https://upload.wikimedia.org/wikipedia/commons/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg "A typical Sudoku puzzle")
 ![image](https://upload.wikimedia.org/wikipedia/commons/1/12/Sudoku_Puzzle_by_L2G-20050714_solution_standardized_layout.svg "solution")
+
+#### Solution
+
+##### C++
+```c++
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>> &board) {
+        if (board.size() < 9 || board[0].size() < 9)
+            return;
+        bool res = dfs(board, 0, 0);
+    }
+
+private:
+    bool dfs(vector<vector<char>> &board, int i, int j) {
+        if (i == 9) return true;
+
+        int i2 = (i + (j + 1) / 9), j2 = (j + 1) % 9;
+        if (board[i][j] != '.') {
+            if (!isValid(board, i, j))
+                return false;
+            return dfs(board, i2, j2);
+        } else {
+            for (int k = 0; k < 9; k++) {
+                board[i][j] = '1' + k;
+                if (isValid(board, i, j) && dfs(board, i2, j2))
+                    return true;
+            }
+            board[i][j] = '.';
+            return false;
+        }
+    }
+
+    bool isValid(vector<vector<char>> &board, int x, int y) {
+        int i, j;
+        for (i = 0; i < 9; ++i) 
+            if (i != x && board[i][y] == board[x][y])
+                return false;
+
+        for (j = 0; j < 9; ++j) 
+            if (j != y && board[x][j] == board[x][y])
+                return false;
+
+        for (i = 3 * (x / 3); i < 3 * (x / 3 + 1); ++i) 
+            for (j = 3 * (y / 3); j < 3 * (y / 3 + 1); ++j) 
+                if ((i != x || j != y) && board[i][j] == board[x][y])
+                    return false;
+        return true;
+    }
+};
+```
+
+#### Solution: Backtracking with Caching
+
+##### C++
+```c++
+class Solution {
+public:
+    // row[i][j], column[i][j], subcube[i][j] represents repectively
+    // if row/column/subcube i (1..9) has number j (1..9)
+    // combine them into one bitset with size 9 * 9 * 3
+    bitset<9 * 9 * 3> flag;
+
+    void solveSudoku(vector<vector<char>> &board) {
+        if (board.size() < 9) return;
+
+        flag.reset();
+        for (uint8_t i = 0; i < 9; i++) {
+            for (uint8_t j = 0; j < 9; j++) {
+                if (board[i][j] == '.') continue;
+
+                auto num = static_cast<uint8_t>(board[i][j] - '1');
+                auto cube = static_cast<uint8_t>(i / 3 * 3 + j / 3);
+                auto row_num = static_cast<uint8_t>(i * 9 + num);
+                auto col_num = static_cast<uint8_t>(j * 9 + num + 81);
+                auto cb_num = static_cast<uint8_t>(cube * 9 + num + 81 * 2);
+                if (flag[row_num] || flag[col_num] || flag[cb_num])
+                    return;
+                flag.set(row_num);
+                flag.set(col_num);
+                flag.set(cb_num);
+            }
+        }
+        step(board, 0, 0);
+    }
+
+    bool step(vector<vector<char>> &board, uint8_t i, uint8_t j) {
+        if (i == 9) return true;
+        
+        auto i2 = static_cast<uint8_t>(i + (j + 1) / 9);
+        auto j2 = static_cast<uint8_t>((j + 1) % 9);
+        if (board[i][j] != '.') {
+            if (i == 8 && j == 8) 
+                return true;
+            else 
+                return step(board, i2, j2);
+        }
+        auto cube = static_cast<uint8_t>(i / 3 * 3 + j / 3);
+        for (uint8_t k = 0; k < 9; k++) {
+            auto row_num = static_cast<uint8_t>(i * 9 + k);
+            auto col_num = static_cast<uint8_t>(j * 9 + k + 81);
+            auto cb_num = static_cast<uint8_t>(cube * 9 + k + 81 * 2);
+            if (flag[row_num] || flag[col_num] || flag[cb_num])
+                continue;
+            flag.set(row_num);
+            flag.set(col_num);
+            flag.set(cb_num);
+            board[i][j] = '1' + k;
+
+            if (step(board, i2, j2))
+                return true;
+            flag.reset(row_num);
+            flag.reset(col_num);
+            flag.reset(cb_num);
+            board[i][j] = '.';
+        }
+        return false;
+    }
+};
+```
