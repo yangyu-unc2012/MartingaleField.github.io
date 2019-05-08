@@ -1843,7 +1843,7 @@ You may assume that the given Sudoku puzzle will have a single unique solution.
 ![image](https://upload.wikimedia.org/wikipedia/commons/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg "A typical Sudoku puzzle")
 ![image](https://upload.wikimedia.org/wikipedia/commons/1/12/Sudoku_Puzzle_by_L2G-20050714_solution_standardized_layout.svg "solution")
 
-#### Solution
+#### Solution: Backtracking
 
 ##### C++
 ```c++
@@ -1930,7 +1930,7 @@ public:
 
     bool step(vector<vector<char>> &board, uint8_t i, uint8_t j) {
         if (i == 9) return true;
-        
+
         auto i2 = static_cast<uint8_t>(i + (j + 1) / 9);
         auto j2 = static_cast<uint8_t>((j + 1) % 9);
         if (board[i][j] != '.') {
@@ -1961,4 +1961,36 @@ public:
         return false;
     }
 };
+```
+###### [Back to Front](#table-of-contents)
+---
+
+
+### [Combination Sum](https://leetcode.com/problems/combination-sum/)
+
+Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+
+The same repeated number may be chosen from candidates unlimited number of times.
+
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+
+Example 1:
+```
+Input: candidates = [2,3,6,7], target = 7,
+A solution set is:
+[
+  [7],
+  [2,2,3]
+]
+```
+Example 2:
+```
+Input: candidates = [2,3,5], target = 8,
+A solution set is:
+[
+  [2,2,2,2],
+  [2,3,3],
+  [3,5]
+]
 ```
