@@ -40,6 +40,7 @@
     - [Sudoku Solver](#sudoku-solver)
     - [Combination Sum](#combination-sum)
     - [Combination Sum II](#combination-sum-ii)
+    - [Combination Sum III](#combination-sum-iii)
 <!-- /TOC -->
 
 # Array
@@ -2030,11 +2031,11 @@ private:
 ##### Python3
 ```python
 def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
-    def dfs(gap, start):
+    def dfs(gap, cur):
         if gap == 0:
             result.append(path[:])
             return
-        for i in range(start, len(candidates)):
+        for i in range(cur, len(candidates)):
             if gap < candidates[i]:
                 break
             path.append(candidates[i])
@@ -2172,3 +2173,57 @@ Example 2:
 Input: k = 3, n = 9
 Output: [[1,2,6], [1,3,5], [2,3,4]]
 ```
+
+#### Solution: DFS
+##### C++
+```c++
+class Solution {
+public:
+    vector<vector<int>> combinationSum3(int k, int n) {
+        dfs(k, n, 1);
+        return this->result;
+    }
+
+private:
+    vector<vector<int>> result;
+    vector<int> path;
+
+    void dfs(int n_left, int gap, int cur) {
+        if (!gap && !n_left) {
+            result.push_back(path);
+            return;
+        }
+        if (n_left <= 0) return;
+
+        for (int i = cur; i <= 9; ++i) {
+            if (gap < i) break;
+            path.emplace_back(i);
+            dfs(n_left - 1, gap - i, i + 1);
+            path.pop_back();
+        }
+    }
+};
+```
+
+##### Python3
+```python
+def combinationSum3(k: 'int', n: 'int') -> 'List[List[int]]':
+    def dfs(left, gap, cur):
+        if left == 0 and gap == 0:
+            result.append(path[:])
+            return
+        if left == 0:
+            return
+        for i in range(cur, 10):
+            if gap < i:
+                break
+            path.append(i)
+            dfs(left - 1, gap - i, i + 1)
+            path.pop()
+
+    result, path = [], []
+    dfs(k, n, 1)
+    return result
+```
+###### [Back to Front](#table-of-contents)
+---
