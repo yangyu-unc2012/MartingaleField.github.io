@@ -1994,3 +1994,53 @@ A solution set is:
   [3,5]
 ]
 ```
+
+#### Solution: DFS
+##### C++
+```
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        dfs(candidates, target, 0);
+        return result;
+    }
+private:
+    vector<vector<int>> result;
+    vector<int> path;
+    
+    void dfs(vector<int> &candidates, int gap, int start) {
+        if (!gap) {
+            result.push_back(path);
+            return;
+        }
+        for (int i = start; i < candidates.size(); ++i) {
+            if (gap < candidates[i]) break;
+            path.emplace_back(candidates[i]);
+            dfs(candidates, gap - candidates[i], i); 
+            path.pop_back();
+        }
+    }
+};
+```
+
+##### Python3
+```python
+def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
+    def dfs(gap, start):
+        if gap == 0:
+            result.append(path[:])
+            return
+        for i in range(start, len(candidates)):
+            if gap < candidates[i]:
+                break
+            path.append(candidates[i])
+            dfs(gap - candidates[i], i)
+            path.pop()
+
+    result = []
+    path = []
+    candidates.sort()
+    dfs(target, 0)
+    return result
+```
