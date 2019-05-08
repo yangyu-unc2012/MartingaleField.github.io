@@ -1,12 +1,5 @@
-
-
-
 [Github](https://github.com/MartingaleField/MartingaleField.github.io) | [Webpage](https://martingalefield.github.io/)
-
-$$
-a+b=c
-$$
-
+    
 # Table of Contents
 
 <!-- TOC depthFrom:2 -->
