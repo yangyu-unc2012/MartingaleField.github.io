@@ -36,6 +36,7 @@
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
 - [Depth First Search](#depth-first-search)
+    - [Generate Parentheses](#generate-parentheses)
 
 
 
@@ -1763,7 +1764,7 @@ TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
 
 # Depth First Search
 
-### Generate Parentheses
+### [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
 
 Given `n` pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
