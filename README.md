@@ -1766,6 +1766,56 @@ private:
 ---
 
 
+### [Minimum Distance Between BST Nodes](https://leetcode.com/problems/minimum-distance-between-bst-nodes/)
+
+Given a Binary Search Tree (BST) with the root node `root`, return the minimum difference between the values of any two different nodes in the tree.
+
+Example:
+```
+Input: root = [4,2,6,1,3,null,null]
+Output: 1
+Explanation:
+Note that root is a TreeNode object, not an array.
+
+The given tree [4,2,6,1,3,null,null] is represented by the following diagram:
+
+          4
+        /   \
+      2      6
+     / \    
+    1   3  
+
+while the minimum difference in this tree is 1, it occurs between node 1 and node 2, also between node 3 and node 2.
+```
+
+#### Solution: Recursive
+
+Do an inorder traversal and record predecessor node `pre` along the way. The minimum distance can only happen between two consecutive nodes in the traversal.
+
+##### C++
+```c++
+class Solution {
+public:
+    int minDiffInBST(TreeNode *root) {
+        return inorder(root);
+    }
+
+private:
+    TreeNode *pre = nullptr;
+
+    int inorder(TreeNode *cur) {
+        if (cur == nullptr) return INT_MAX;
+
+        int min_dist = inorder(cur->left);
+        if (pre != nullptr)
+            min_dist = min(min_dist, cur->val - pre->val);
+        pre = cur;
+        return min(min_dist, inorder(cur->right));
+    }
+};
+```
+
+
 
 # Depth First Search
 
