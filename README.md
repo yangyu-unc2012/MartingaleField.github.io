@@ -1314,6 +1314,195 @@ vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
 ###### [Back to Front](#table-of-contents)
 ---
 
+
+
+
+
+### [Same Tree](https://leetcode.com/problems/same-tree/)
+
+Given two binary trees, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+
+#### Solution: Recursive
+
+##### C++
+```c++
+bool isSameTree(TreeNode *p, TreeNode *q) {
+    if (!p && !q) return true;
+    if (!p || !q) return false;
+    return p->val == q->val
+           && isSameTree(p->left, q->left)
+           && isSameTree(p->right, q->right);
+}
+```
+
+#### Solution: Iterative
+
+##### C++
+```c++
+bool isSymmetric(TreeNode *root) {
+    if (!root) return true;
+
+    stack<TreeNode *> s;
+    s.push(root->left);
+    s.push(root->right);
+
+    while (!s.empty()) {
+        auto p = s.top();
+        s.pop();
+        auto q = s.top();
+        s.pop();
+
+        if (!p && !q) continue;
+        if (!p || !q) return false;
+        if (p->val != q->val) return false;
+
+        s.push(p->right);
+        s.push(q->left);
+        s.push(p->left);
+        s.push(q->right);
+    }
+    return true;
+}
+```
+
+###### [Back to Front](#table-of-contents)
+---
+
+
+
+### [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+Given preorder and inorder traversal of a tree, construct the binary tree.
+
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+```
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+```
+Return the following binary tree:
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+#### Solution
+
+Inorder:
+```
+[ left subtree ] root [ right subtree ]
+```
+Preorder:
+```
+root [ left subtree ] [ right subtree ]
+```
+We first find the position of root (i.e. `*begin(preorder)`) in inorder vector. The size of left subtree is then `distance(begin(inorder), in_root_pos)`. Then recursively build left and right subtrees.
+- For left subtree, the inorder vector is
+    `inorder[0..left_size - 1]`
+    the preorder vector is
+    `preorder[1..left_size]`
+- For right subtree, the inorder vector is
+    `inorder[in_root_pos + 1..in_last]`
+    the preorder vector is
+    `preorder[left_size + 1..pre_last]`
+
+##### C++
+```c++
+template<typename InputIterator>
+TreeNode *buildTree(InputIterator pre_first, InputIterator pre_last,
+                    InputIterator in_first, InputIterator in_last) {
+    if (pre_first == pre_last) return nullptr;
+    if (in_first == in_last) return nullptr;
+
+    auto root = new TreeNode(*pre_first);
+    auto in_root_pos = find(in_first, in_last, *pre_first);
+    auto left_size = distance(in_first, in_root_pos);
+
+    root->left = buildTree(next(pre_first), next(pre_first, left_size + 1),
+                           in_first, next(in_first, left_size));
+    root->right = buildTree(next(pre_first, left_size + 1),
+                            pre_last, next(in_root_pos), in_last);
+
+    return root;
+}
+
+TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+    return buildTree(begin(preorder), end(preorder), begin(inorder), end(inorder));
+}
+```
+###### [Back to Front](#table-of-contents)
+---
+
+
+### [Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+```
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+```
+Return the following binary tree:
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+#### Solution
+
+Inorder:
+```
+[ left subtree ] root [ right subtree ]
+```
+Postorder:
+```
+[ left subtree ] [ right subtree ] root
+```
+
+##### C++
+```c++
+template<typename InputIterator>
+TreeNode *buildTree(InputIterator in_first, InputIterator in_last,
+                    InputIterator post_first, InputIterator post_last) {
+    if (in_first == in_last) return nullptr;
+    if (post_first == post_last) return nullptr;
+
+    auto root_val = *prev(post_last);
+    TreeNode *root = new TreeNode(root_val);
+
+    auto in_root_pos = find(in_first, in_last, root_val);
+    auto left_size = distance(in_first, in_root_pos);
+
+    root->left = buildTree(in_first, in_root_pos,
+                           post_first, next(post_first, left_size));
+    root->right = buildTree(next(in_root_pos), in_last,
+                            next(post_first, left_size), prev(post_last));
+    return root;
+}
+
+TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
+    return buildTree(begin(inorder), end(inorder), begin(postorder), end(postorder));
+}
+```
+
+###### [Back to Front](#table-of-contents)
+---
+
+
+
+
 # Binary Search Tree
 
 ### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
@@ -1575,191 +1764,6 @@ private:
 ```
 ###### [Back to Front](#table-of-contents)
 ---
-
-
-
-### [Same Tree](https://leetcode.com/problems/same-tree/)
-
-Given two binary trees, write a function to check if they are the same or not.
-
-Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
-
-#### Solution: Recursive
-
-##### C++
-```c++
-bool isSameTree(TreeNode *p, TreeNode *q) {
-    if (!p && !q) return true;
-    if (!p || !q) return false;
-    return p->val == q->val
-           && isSameTree(p->left, q->left)
-           && isSameTree(p->right, q->right);
-}
-```
-
-#### Solution: Iterative
-
-##### C++
-```c++
-bool isSymmetric(TreeNode *root) {
-    if (!root) return true;
-
-    stack<TreeNode *> s;
-    s.push(root->left);
-    s.push(root->right);
-
-    while (!s.empty()) {
-        auto p = s.top();
-        s.pop();
-        auto q = s.top();
-        s.pop();
-
-        if (!p && !q) continue;
-        if (!p || !q) return false;
-        if (p->val != q->val) return false;
-
-        s.push(p->right);
-        s.push(q->left);
-        s.push(p->left);
-        s.push(q->right);
-    }
-    return true;
-}
-```
-
-###### [Back to Front](#table-of-contents)
----
-
-
-
-### [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
-
-Given preorder and inorder traversal of a tree, construct the binary tree.
-
-You may assume that duplicates do not exist in the tree.
-
-For example, given
-```
-preorder = [3,9,20,15,7]
-inorder = [9,3,15,20,7]
-```
-Return the following binary tree:
-```
-    3
-   / \
-  9  20
-    /  \
-   15   7
-```
-
-#### Solution
-
-Inorder:
-```
-[ left subtree ] root [ right subtree ]
-```
-Preorder:
-```
-root [ left subtree ] [ right subtree ]
-```
-We first find the position of root (i.e. `*begin(preorder)`) in inorder vector. The size of left subtree is then `distance(begin(inorder), in_root_pos)`. Then recursively build left and right subtrees.
-- For left subtree, the inorder vector is
-    `inorder[0..left_size - 1]`
-    the preorder vector is
-    `preorder[1..left_size]`
-- For right subtree, the inorder vector is
-    `inorder[in_root_pos + 1..in_last]`
-    the preorder vector is
-    `preorder[left_size + 1..pre_last]`
-
-##### C++
-```c++
-template<typename InputIterator>
-TreeNode *buildTree(InputIterator pre_first, InputIterator pre_last,
-                    InputIterator in_first, InputIterator in_last) {
-    if (pre_first == pre_last) return nullptr;
-    if (in_first == in_last) return nullptr;
-
-    auto root = new TreeNode(*pre_first);
-    auto in_root_pos = find(in_first, in_last, *pre_first);
-    auto left_size = distance(in_first, in_root_pos);
-
-    root->left = buildTree(next(pre_first), next(pre_first, left_size + 1),
-                           in_first, next(in_first, left_size));
-    root->right = buildTree(next(pre_first, left_size + 1),
-                            pre_last, next(in_root_pos), in_last);
-
-    return root;
-}
-
-TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
-    return buildTree(begin(preorder), end(preorder), begin(inorder), end(inorder));
-}
-```
-###### [Back to Front](#table-of-contents)
----
-
-
-### [Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
-
-Given inorder and postorder traversal of a tree, construct the binary tree.
-
-You may assume that duplicates do not exist in the tree.
-
-For example, given
-```
-inorder = [9,3,15,20,7]
-postorder = [9,15,7,20,3]
-```
-Return the following binary tree:
-```
-    3
-   / \
-  9  20
-    /  \
-   15   7
-```
-
-#### Solution
-
-Inorder:
-```
-[ left subtree ] root [ right subtree ]
-```
-Postorder:
-```
-[ left subtree ] [ right subtree ] root
-```
-
-##### C++
-```c++
-template<typename InputIterator>
-TreeNode *buildTree(InputIterator in_first, InputIterator in_last,
-                    InputIterator post_first, InputIterator post_last) {
-    if (in_first == in_last) return nullptr;
-    if (post_first == post_last) return nullptr;
-
-    auto root_val = *prev(post_last);
-    TreeNode *root = new TreeNode(root_val);
-
-    auto in_root_pos = find(in_first, in_last, root_val);
-    auto left_size = distance(in_first, in_root_pos);
-
-    root->left = buildTree(in_first, in_root_pos,
-                           post_first, next(post_first, left_size));
-    root->right = buildTree(next(in_root_pos), in_last,
-                            next(post_first, left_size), prev(post_last));
-    return root;
-}
-
-TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
-    return buildTree(begin(inorder), end(inorder), begin(postorder), end(postorder));
-}
-```
-
-###### [Back to Front](#table-of-contents)
----
-
 
 
 
