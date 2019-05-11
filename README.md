@@ -22,6 +22,7 @@
     - [Product of Array Except Self](#product-of-array-except-self)
     - [Missing Number](#missing-number)
     - [Contains Duplicate III](#contains-duplicate-iii)
+    - [H-Index](#h-index)
 - [Linked List](#linked-list)
 - [Binary Tree](#binary-tree)
     - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
@@ -848,6 +849,27 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
     return false;
 }
 ```
+###### [Back to Front](#table-of-contents)
+---
+
+
+### [H-Index](https://leetcode.com/problems/h-index/)
+
+Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher's h-index.
+
+According to the definition of h-index on Wikipedia: "A scientist has index h if h of his/her N papers have at least h citations each, and the other N − h papers have no more than h citations each."
+
+Example:
+```
+Input: citations = [3,0,6,1,5]
+Output: 3 
+Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of them had 
+             received 3, 0, 6, 1, 5 citations respectively. 
+             Since the researcher has 3 papers with at least 3 citations each and the remaining 
+             two with no more than 3 citations each, her h-index is 3.
+```
+Note: If there are several possible values for h, the maximum one is taken as the h-index.
+
 
 # Linked List
 
@@ -1121,6 +1143,69 @@ vector<int> postorderTraversal(TreeNode *root) {
     return result;
 }
 ```
+
+#### Solution: Morris
+
+##### C++
+```c++
+void reverse(TreeNode *from, TreeNode *to) {
+    TreeNode *x = from, *y = from->right, *z;
+    if (from == to) return;
+
+    while (x != to) {
+        z = y->right;
+        y->right = x;
+        x = y;
+        y = z;
+    }
+}
+
+template<typename func>
+void visit_reverse(TreeNode *from, TreeNode *to, func &visit) {
+    auto p = to;
+    reverse(from, to);
+
+    while (true) {
+        visit(p);
+        if (p == from)
+            break;
+        p = p->right;
+    }
+    reverse(to, from);
+}
+
+vector<int> postorderTraversal(TreeNode *root) {
+    vector<int> result;
+    TreeNode dummy(-1);
+    dummy.left = root;
+
+    auto visit = [&result](TreeNode *node) { result.emplace_back(node->val); };
+
+    TreeNode *cur = &dummy, *prev = nullptr;
+    while (cur) {
+        if (!cur->left) {
+            prev = cur;
+            cur = cur->right;
+        } else {
+            auto node = cur->left;
+            while (node->right && node->right != cur)
+                node = node->right;
+            if (!node->right) {
+                node->right = cur;
+                prev = cur;
+                cur = cur->left;
+            } else {
+                visit_reverse(cur->left, prev, visit);
+                prev->right = nullptr;
+                prev = cur;
+                cur = cur->right;
+            }
+        }
+    }
+    return result;
+}
+```
+
 ###### [Back to Front](#table-of-contents)
 ---
 
