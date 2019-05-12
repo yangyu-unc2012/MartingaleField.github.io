@@ -43,6 +43,8 @@
     - [Combination Sum](#combination-sum)
     - [Combination Sum II](#combination-sum-ii)
     - [Combination Sum III](#combination-sum-iii)
+- [Design](#design)
+    - [LRU Cache](#lru-cache)
 <!-- /TOC -->
 
 # Array
@@ -876,7 +878,9 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 If we sort the `citations` in decreasing order, the h-index is then the last position where the citation is greater than or equal to the position. 
 
-- Counting sort: Take a `cnt` array of size `N + 1`. If a paper has a citation of `c <= N`, `cnt[c]++`; if `c > N`, `cnt[N]++`. The reason for the second `if` is that the h-index cannot be larger than `N` and so we can treat all citations larger than `N` the same.
+Algorithm:
+
+- Counting sort: Take a `cnt` array of size `N + 1`. If a paper has a citation of `c <= N`, `cnt[c]++`; if `c > N`, `cnt[N]++`. The reason for the second `if` is that the h-index cannot be larger than `N` and so we can treat all citations larger than `N` the same. 
 
 - We then scan from right to left, summing up `cnt[i]` along the way, until we reach a sum greater than or equal to the current index. Then this index is our h-index.
 
@@ -2398,5 +2402,71 @@ def combinationSum3(k: 'int', n: 'int') -> 'List[List[int]]':
     dfs(k, n, 1)
     return result
 ```
+###### [Back to Front](#table-of-contents)
+---
+
+
+
+# Design
+
+### [LRU Cache](https://leetcode.com/problems/lru-cache/)
+
+Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: `get` and `put`.
+
+- `get(key)` - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+- `put(key, value)` - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+
+
+#### Solution
+
+##### C++
+```c++
+class LRUCache {
+public:
+    LRUCache(int capacity) {
+        this->capacity_ = capacity;
+    }
+
+    int get(int key) {
+        if (map_.find(key) == map_.end())
+            return -1;
+
+        // Transfer the element pointed by map_[key] from queue_ into queue_,
+        // inserting it at queue_.begin()
+        queue_.splice(queue_.begin(), queue_, map_[key]);
+
+        map_[key] = queue_.begin();
+        return map_[key]->value;
+    }
+
+    void put(int key, int value) {
+        if (map_.find(key) == map_.end()) { // if key is in memory queue
+            if (queue_.size() == capacity_) {
+                map_.erase(queue_.back().key);
+                queue_.pop_back();
+            }
+            queue_.push_front(CacheNode(key, value));
+            map_[key] = queue_.begin();
+        } else { // if key is NOT in memory queue
+            map_[key]->value = value;
+            queue_.splice(queue_.begin(), queue_, map_[key]);
+            map_[key] = queue_.begin();
+        }
+    }
+
+private:
+    struct CacheNode {
+        int key, value;
+
+        CacheNode(int k, int v) : key(k), value(v) {}
+    };
+
+    list<CacheNode> queue_;
+    unordered_map<int, list<CacheNode>::iterator> map_;
+    int capacity_;
+};
+```
+
+
 ###### [Back to Front](#table-of-contents)
 ---
