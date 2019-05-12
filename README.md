@@ -2442,14 +2442,14 @@ public:
     }
 
     void put(int key, int value) {
-        if (map_.find(key) == map_.end()) { // if key is in memory queue
+        if (map_.find(key) == map_.end()) { // if key is NOT in memory queue
             if (queue_.size() == capacity_) {
                 map_.erase(queue_.back().key);
                 queue_.pop_back();
             }
             queue_.push_front(CacheNode(key, value));
             map_[key] = queue_.begin();
-        } else { // if key is NOT in memory queue
+        } else { // if key is in memory queue
             map_[key]->value = value;
             queue_.splice(queue_.begin(), queue_, map_[key]);
             map_[key] = queue_.begin();
