@@ -886,6 +886,28 @@ Algorithm:
 
 - We then scan from right to left, summing up `cnt[i]` along the way, until we reach a sum greater than or equal to the current index. Then this index is our h-index.
 
+A simple implementation can be
+
+##### C++
+```c++
+int hIndex(vector<int> &citations) {
+    sort(citations.begin(), citations.end(), greater<int>());
+    int h = 0;
+    for (int i = 0; i < citations.size(); ++i)
+        if (citations[i] > i) ++h;
+    return h;
+}
+```
+##### Python3
+```python
+def hIndex(citations: List[int]) -> int:
+    h = 0
+    for i, c in enumerate(sorted(citations, reverse=True)):
+        if c > i:
+            h += 1
+    return h
+```
+
 ##### C++
 ```c++
 int hIndex(vector<int> &citations) {
@@ -908,22 +930,21 @@ int hIndex(vector<int> &citations) {
 
 ##### Python3
 ```python
-class Solution:
-    def hIndex(self, citations: List[int]) -> int:
-        n = len(citations)
-        cnt = [0] * (n + 1);
-        for c in citations:
-            if c <= n:
-                cnt[c] += 1
-            else:
-                cnt[n] += 1
+def hIndex(self, citations: List[int]) -> int:
+    n = len(citations)
+    cnt = [0] * (n + 1);
+    for c in citations:
+        if c <= n:
+            cnt[c] += 1
+        else:
+            cnt[n] += 1
 
-        ans = 0
-        for i in range(n, -1, -1):
-            ans += cnt[i]
-            if ans >= i:
-                return i
-        return 0
+    ans = 0
+    for i in range(n, -1, -1):
+        ans += cnt[i]
+        if ans >= i:
+            return i
+    return 0
 ```
 
 ###### [Back to Front](#table-of-contents)
