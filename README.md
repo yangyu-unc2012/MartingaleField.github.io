@@ -23,6 +23,8 @@
     - [Missing Number](#missing-number)
     - [Contains Duplicate III](#contains-duplicate-iii)
     - [H-Index](#h-index)
+- [Binary Search](#binary-search)
+    - [H-Index II](#h-index-ii)
 - [Linked List](#linked-list)
 - [Binary Tree](#binary-tree)
     - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
@@ -87,7 +89,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
-###### [Back to Front](#table-of-contents)
+[<span style="font-size:4em;">Back to Front</span>](#table-of-contents)
 ---
 
 
@@ -947,6 +949,44 @@ def hIndex(self, citations: List[int]) -> int:
         if ans >= i:
             return i
     return 0
+```
+
+###### [Back to Front](#table-of-contents)
+---
+
+
+# Binary Search
+
+### [H-Index II](https://leetcode.com/problems/h-index-ii/)
+
+Given an array of citations **sorted in ascending order** (each citation is a non-negative integer) of a researcher, write a function to compute the researcher's h-index.
+
+If there are several possible values for h, the maximum one is taken as the h-index.
+
+#### Solution
+
+The idea is to search for the first index so that
+```
+citations[index] >= length(citations) - index
+```
+And return `length - index` as the result. The search can be done using binary search.
+
+##### C++
+```c++
+int hIndex(vector<int> &citations) {
+    int n = citations.size();
+    int left = 0, right = n - 1;
+    while (left <= right) {
+        int mid = (left + right) >> 1;
+        if (citations[mid] == n - mid)
+            return n - mid;
+        else if (citations[mid] < n - mid)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return n - left;
+}
 ```
 
 ###### [Back to Front](#table-of-contents)
