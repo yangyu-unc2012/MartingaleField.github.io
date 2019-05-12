@@ -870,6 +870,37 @@ Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of 
 ```
 Note: If there are several possible values for h, the maximum one is taken as the h-index.
 
+#### Solution
+
+- Take a `cnt` array of size $ N+1 $. If a paper has a citation of `h <= N`, `cnt[h]++`; if `h > N`, `cnt[N]++`.
+
+- We then scan from right to left, summing up `cnt[i]` along the way, until we reach a sum greater than or equal to the current index. Then this index is our h-index.
+
+##### C++
+```c++
+int hIndex(vector<int> &citations) {
+    int n = citations.size();
+    vector<int> cnt(n + 1, 0);
+    for (int c : citations) {
+        if (c >= n)
+            cnt[n]++;
+        else
+            cnt[c]++;
+    }
+    int sum = 0;
+    for (int i = n; i >= 0; --i) {
+        sum += cnt[i];
+        if (sum >= i) return i;
+    }
+    return 0;
+}
+```
+
+###### [Back to Front](#table-of-contents)
+---
+
+
+
 
 # Linked List
 
@@ -1151,7 +1182,6 @@ vector<int> postorderTraversal(TreeNode *root) {
 void reverse(TreeNode *from, TreeNode *to) {
     TreeNode *x = from, *y = from->right, *z;
     if (from == to) return;
-
     while (x != to) {
         z = y->right;
         y->right = x;
@@ -1167,8 +1197,7 @@ void visit_reverse(TreeNode *from, TreeNode *to, func &visit) {
 
     while (true) {
         visit(p);
-        if (p == from)
-            break;
+        if (p == from) break;
         p = p->right;
     }
     reverse(to, from);
@@ -1181,17 +1210,16 @@ vector<int> postorderTraversal(TreeNode *root) {
 
     auto visit = [&result](TreeNode *node) { result.emplace_back(node->val); };
 
-    TreeNode *cur = &dummy, *prev = nullptr;
-    while (cur) {
-        if (!cur->left) {
+    TreeNode *cur = &dummy, *prev = nullptr, *p = nullptr;
+    while (cur != nullptr) {
+        if (cur->left == nullptr) {
             prev = cur;
             cur = cur->right;
         } else {
-            auto node = cur->left;
-            while (node->right && node->right != cur)
-                node = node->right;
-            if (!node->right) {
-                node->right = cur;
+            for (p = cur->left; p->right != nullptr && p->right != cur; p = p->right);
+
+            if (p->right == nullptr) {
+                p->right = cur;
                 prev = cur;
                 cur = cur->left;
             } else {
