@@ -2419,7 +2419,7 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
 #### Solution
 
 ![LRU1](https://www.geeksforgeeks.org/wp-content/uploads/LRU1.png)
-![LRU2](https://www.geeksforgeeks.org/wp-content/uploads/LRU2.png)
+<!-- ![LRU2](https://www.geeksforgeeks.org/wp-content/uploads/LRU2.png) -->
 
 ##### C++
 ```c++
