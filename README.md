@@ -874,7 +874,9 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 ![h-index](https://upload.wikimedia.org/wikipedia/commons/d/da/H-index-en.svg)
 
-- Take a `cnt` array of size `N + 1`. If a paper has a citation of `h <= N`, `cnt[h]++`; if `h > N`, `cnt[N]++`.
+If we sort the `citations` in decreasing order, the h-index is then the last position where the citation is greater than or equal to the position. 
+
+- Counting sort: Take a `cnt` array of size `N + 1`. If a paper has a citation of `c <= N`, `cnt[c]++`; if `c > N`, `cnt[N]++`. The reason for the second `if` is that the h-index cannot be larger than `N` and so we can treat all citations larger than `N` the same.
 
 - We then scan from right to left, summing up `cnt[i]` along the way, until we reach a sum greater than or equal to the current index. Then this index is our h-index.
 
