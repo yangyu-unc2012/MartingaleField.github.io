@@ -2416,8 +2416,10 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
 - `get(key)` - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
 - `put(key, value)` - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
-
 #### Solution
+
+![LRU1](https://www.geeksforgeeks.org/wp-content/uploads/LRU1.png)
+![LRU2](https://www.geeksforgeeks.org/wp-content/uploads/LRU2.png)
 
 ##### C++
 ```c++
