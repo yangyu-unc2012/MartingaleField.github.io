@@ -872,7 +872,7 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 #### Solution
 
-- Take a `cnt` array of size $ N+1 $. If a paper has a citation of `h <= N`, `cnt[h]++`; if `h > N`, `cnt[N]++`.
+- Take a `cnt` array of size `N + 1`. If a paper has a citation of `h <= N`, `cnt[h]++`; if `h > N`, `cnt[N]++`.
 
 - We then scan from right to left, summing up `cnt[i]` along the way, until we reach a sum greater than or equal to the current index. Then this index is our h-index.
 
