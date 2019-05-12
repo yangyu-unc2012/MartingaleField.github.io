@@ -2469,6 +2469,28 @@ private:
 };
 ```
 
+##### Python3
+```python
+class LRUCache:
+    def __init__(self, capacity: int):
+        self._map = OrderedDict()
+        self._capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self._map:
+            return -1
+        price = self._map.pop(key)
+        self._map[key] = price
+        return price
+
+    def put(self, key: int, value: int) -> None:
+        if key in self._map:
+            self._map.pop(key)
+        if len(self._map) == self._capacity:
+            self._map.popitem(last=False)
+        self._map[key] = value
+```
+
 
 ###### [Back to Front](#table-of-contents)
 ---
