@@ -886,7 +886,7 @@ Algorithm:
 
 - We then scan from right to left, summing up `cnt[i]` along the way, until we reach a sum greater than or equal to the current index. Then this index is our h-index.
 
-A simple implementation can be
+A simple implementation using built-in `sort` function can be
 
 ##### C++
 ```c++
@@ -907,6 +907,8 @@ def hIndex(citations: List[int]) -> int:
             h += 1
     return h
 ```
+
+But this has a complexity of `O(n logn)`, so is applicable if `n` is small. When `n` is large, we use counting sort.
 
 ##### C++
 ```c++
