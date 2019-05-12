@@ -135,7 +135,7 @@ def maxArea(self, height: List[int]) -> int:
             j -= 1
     return ans
 ```
-[Back to Front](#table-of-contents)
+<span style="font-size: 1em">[Back to Front](#table-of-contents)</span>
 ---
 
 
