@@ -89,7 +89,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
-[Back to Front](#table-of-contents)
+###### [Back to Front](#table-of-contents)
 ---
 
 
@@ -135,7 +135,7 @@ def maxArea(self, height: List[int]) -> int:
             j -= 1
     return ans
 ```
-[<span style="font-size: 10px">Back to Front</span>]
+###### [Back to Front](#table-of-contents)
 ---
 
 
