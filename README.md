@@ -89,7 +89,8 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
-###### [Back to Front](#table-of-contents)
+
+[Back to Front](#table-of-contents)
 ---
 
 
