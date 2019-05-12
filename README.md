@@ -876,7 +876,9 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 ![h-index](https://upload.wikimedia.org/wikipedia/commons/d/da/H-index-en.svg)
 
-If we sort the `citations` in decreasing order, the h-index is then the last position where the citation is greater than or equal to the position. 
+If we sort the `citations` in decreasing order, the h-index is then the last position where the citation is **greater than** the position. 
+
+For example, for input `[3,3,3,0,6,1,5]` (`[6,5,3,3,3,1,0]` after sorting), the last position where the citation is greater than the position is 3 (the position starts from 1). Hence the h-index is 3.
 
 Algorithm:
 
@@ -902,6 +904,26 @@ int hIndex(vector<int> &citations) {
     }
     return 0;
 }
+```
+
+##### Python3
+```python
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        n = len(citations)
+        cnt = [0] * (n + 1);
+        for c in citations:
+            if c <= n:
+                cnt[c] += 1
+            else:
+                cnt[n] += 1
+
+        ans = 0
+        for i in range(n, -1, -1):
+            ans += cnt[i]
+            if ans >= i:
+                return i
+        return 0
 ```
 
 ###### [Back to Front](#table-of-contents)
